@@ -8,10 +8,10 @@
 
 import MySQLdb
 import sys
-import os
+#import os
 import subprocess
 import datetime
-import time
+#import time
 from class_profiles import profilePython
 
 config = profilePython('/etc/config/nooxs.config')
