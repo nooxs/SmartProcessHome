@@ -5,9 +5,9 @@ import MySQLdb
 import sqlite3
 import os
 import sys
-import subprocess
-import datetime
-import time
+#import subprocess
+#import datetime
+#import time
 from class_profiles import profilePython
 
 config = profilePython('/etc/config/nooxs.config')
