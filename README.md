@@ -1,7 +1,7 @@
 SmartProcessHome
 ================
 
-Primer proyecto raspberry PI + Arduino
+**Primer proyecto raspberry PI + Arduino
 
 Sistema de control
 Raspberry Pi con BerriBoot
