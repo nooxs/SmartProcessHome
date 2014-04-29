@@ -9,9 +9,9 @@ SmartProcessHome
 
 #### Funcionalidad:
 
-1.  -ok- recibir información de los distintos dispositivos y almacenarlos en la DB
-2.  -pdte- Programación de eventos
-3. -pdte- Lanzar eventos a los actuadores de los diferentes sistemas.
+1. Recibir información de los distintos dispositivos y almacenarlos en la DB
+2. Programación de eventos
+3. Lanzar eventos a los actuadores de los diferentes sistemas.
 
 **class_profiles.py**
 
