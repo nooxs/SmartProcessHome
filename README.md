@@ -1,7 +1,7 @@
 SmartProcessHome
 ================
 
- Primer proyecto raspberry PI + Arduino
+ Proyecto raspberry PI + Arduino
  30/05/2014
 
 ***
@@ -12,7 +12,7 @@ SmartProcessHome
 
 1. Recibir información de los distintos dispositivos y almacenarlos en la DB
 2. Programación de eventos
-3. Lanzar eventos a los actuadores de los diferentes sistemas.
+3. Lanzar eventos a los actuadores de los diferentes sistemas a través de REST (web Services).
 
 **class_profiles.py**
 
