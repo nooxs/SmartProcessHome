@@ -193,11 +193,13 @@ def fSensores(queDB):
         for aRegistro in aFilas:
             if aRegistro[0] != iAnterior:
                 # recoger el nombre del dispositivo.
-                if qDB == "M":
+                if queDB == "M":
                     cursor.execute("""SELECT nom_dispositivo FROM dispositivos WHERE cod_dispositivo = %s""",(aRegistro[0]))
-                elif qDB == "S":
+                elif queDB == "S":
                     cursor.execute("""SELECT nom_dispositivo FROM dispositivos WHERE cod_dispositivo=?""",(aRegistro[0]))
-                print (cursor.fetchone())
+                aUnaFila = cursor.fetchone()
+                print
+                print aUnaFila[0]
                 print '-------+----+--------------------------------+-----+------+------+--------+---------------------+---------+'
                 iAnterior = aRegistro[0]
             print '|{0:5d} |{1:3} | {2:30} | {3:3} | {4:4} | {5:4} | {6:6} | {7:19} | {8:4}    |'.format(aRegistro[0],aRegistro[1],aRegistro[2],aRegistro[3],aRegistro[4],aRegistro[5],aRegistro[6],str(aRegistro[7]),aRegistro[8])
