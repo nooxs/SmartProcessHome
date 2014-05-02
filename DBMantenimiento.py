@@ -105,6 +105,7 @@ def fDispositivos(queDB):
             iRegistro = raw_input('Numero de registro a borrar: ')
             sConfirmacion = raw_input('¿estás seguro (s/n)? :')
             if sConfirmacion == "s" or sConfirmacion == "S":
+                # antes de borrar, confirmar que no está activo. Si está activo, no se puede borrar. Primero hay que desactivarlo
                 if queDB == "M":
                     cursor.execute("""DELETE FROM dispositivos WHERE cod_dispositivo = %s""", (iRegistro))
                 elif queDB == "S":
@@ -119,6 +120,9 @@ def fDispositivos(queDB):
             sIP = raw_input('IP : ')
             sClave = raw_input('Clave : ')
             iActivo = raw_input('Activo (1 Activo , 0 No Activo) : ')
+
+            # si cambia el estado a desactivo, comprobar primero si alguno de los pines está HIGH. Si alguno está HIGH no se puede desactivar
+
             if queDB == "M":
                 cursor.execute("""UPDATE dispositivos SET nom_dispositivo=%s,MAC_dispositivo=%s, IP_dispositivo=%s, clave_dispositivo=%s, activo=%s WHERE cod_dispositivo=%s""",(sNombre, sMAC, sIP, sClave, iActivo,iRegistro))
             elif queDB == "S":    
@@ -142,24 +146,33 @@ def fDispositivos(queDB):
             iRegistro = raw_input('Numero de registro a Activar / Desactivar: ')
             sConfirmacion = raw_input('¿estás seguro (s/n)? :')
             if sConfirmacion == "s" or sConfirmacion == "S":
-                # comprobar si estaba activo o desactivo y cambiar
-                if queDB == "M":
-                    cursor.execute("""SELECT activo FROM dispositivos WHERE cod_dispositivo=%s""",(iRegistro))
-                elif queDB == "S":
-                    cursor.execute("""SELECT activo FROM dispositivos WHERE cod_dispositivo=?""",(iRegistro))
 
-                aFilas=cursor.fetchone()
-                if aFilas[0] == 1:
+                # si cambia el estado a desactivo, comprobar primero si alguno de los pines está activo. Si alguno está activo no se puede desactivar
+                if queDB == "M":
+                    sSQL = "SELECT * FROM pin WHERE cod_dispositivo = %s AND activo = 1"
+                elif queDB == "S":
+                    sSQL = "SELECT * FROM pin WHERE cod_dispositivo = ? AND activo = 1"
+
+                if cursor.execute(sSQL,(iRegistro)) == 0:   # no hay pines activos
+
+                    # comprobar si estaba activo o desactivo y cambiar
                     if queDB == "M":
-                        cursor.execute("""UPDATE dispositivos SET activo=0 WHERE cod_dispositivo=%s""",(iRegistro))
-                    elif queDB == "S":   
-                        cursor.execute("""UPDATE dispositivos SET activo=0 WHERE cod_dispositivo=?""",(iRegistro))
-                elif aFilas[0] == 0:
-                    if queDB == "M":
-                        cursor.execute("""UPDATE dispositivos SET activo=1 WHERE cod_dispositivo=%s""",(iRegistro))
-                    elif queDB == "S":   
-                        cursor.execute("""UPDATE dispositivos SET activo=1 WHERE cod_dispositivo=?""",(iRegistro))
-                db.commit()
+                        cursor.execute("""SELECT activo FROM dispositivos WHERE cod_dispositivo=%s""",(iRegistro))
+                    elif queDB == "S":
+                        cursor.execute("""SELECT activo FROM dispositivos WHERE cod_dispositivo=?""",(iRegistro))
+
+                    aFilas=cursor.fetchone()
+                    if aFilas[0] == 1:
+                        if queDB == "M":
+                            cursor.execute("""UPDATE dispositivos SET activo=0 WHERE cod_dispositivo=%s""",(iRegistro))
+                        elif queDB == "S":
+                            cursor.execute("""UPDATE dispositivos SET activo=0 WHERE cod_dispositivo=?""",(iRegistro))
+                    elif aFilas[0] == 0:
+                        if queDB == "M":
+                            cursor.execute("""UPDATE dispositivos SET activo=1 WHERE cod_dispositivo=%s""",(iRegistro))
+                        elif queDB == "S":
+                            cursor.execute("""UPDATE dispositivos SET activo=1 WHERE cod_dispositivo=?""",(iRegistro))
+                    db.commit()
     
 def fSensores(queDB):
     bSalir = False
@@ -179,6 +192,12 @@ def fSensores(queDB):
         iAnterior=0
         for aRegistro in aFilas:
             if aRegistro[0] != iAnterior:
+                # recoger el nombre del dispositivo.
+                if qDB == "M":
+                    cursor.execute("""SELECT nom_dispositivo FROM dispositivos WHERE cod_dispositivo = %s""",(aRegistro[0]))
+                elif qDB == "S":
+                    cursor.execute("""SELECT nom_dispositivo FROM dispositivos WHERE cod_dispositivo=?""",(aRegistro[0]))
+                print (cursor.fetchone())
                 print '-------+----+--------------------------------+-----+------+------+--------+---------------------+---------+'
                 iAnterior = aRegistro[0]
             print '|{0:5d} |{1:3} | {2:30} | {3:3} | {4:4} | {5:4} | {6:6} | {7:19} | {8:4}    |'.format(aRegistro[0],aRegistro[1],aRegistro[2],aRegistro[3],aRegistro[4],aRegistro[5],aRegistro[6],str(aRegistro[7]),aRegistro[8])
