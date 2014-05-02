@@ -23,20 +23,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="nooxsenseYUN_v1.ino" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Arduino YUN/nooxsenseYUN_v1/nooxsenseYUN_v1.ino">
+      <file leaf-file-name="procesa.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/procesa.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="16" selection-start="453" selection-end="453" vertical-scroll-proportion="-2.174267" vertical-offset="1545" max-vertical-offset="2685">
+            <state line="13" column="1" selection-start="405" selection-end="405" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="1215">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nooxsenseFLY_v1.ino" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ArduinoUNO_Wifly/nooxsenseFLY_v1/nooxsenseFLY_v1.ino">
+      <file leaf-file-name="DBMantenimiento.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DBMantenimiento.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="117" column="10" selection-start="4403" selection-end="4403" vertical-scroll-proportion="0.0" vertical-offset="465" max-vertical-offset="2055">
-              <folding />
+            <state line="183" column="30" selection-start="9952" selection-end="9952" vertical-scroll-proportion="0.64891845" vertical-offset="2355" max-vertical-offset="5505">
+              <folding>
+                <element signature="e#47#61#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -54,10 +56,10 @@
         <option value="$PROJECT_DIR$/crea_profile.py" />
         <option value="$PROJECT_DIR$/DBCreaSQLite3.py" />
         <option value="$PROJECT_DIR$/procesa.py" />
-        <option value="$PROJECT_DIR$/DBMantenimiento.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/Arduino YUN/nooxsenseYUN_v1/nooxsenseYUN_v1.ino" />
         <option value="$PROJECT_DIR$/ArduinoUNO_Wifly/nooxsenseFLY_v1/nooxsenseFLY_v1.ino" />
+        <option value="$PROJECT_DIR$/DBMantenimiento.py" />
       </list>
     </option>
   </component>
@@ -93,6 +95,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -129,27 +132,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SmartProcessHome" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SmartProcessHome" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Arduino YUN" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nooxsenseYUN_v1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -356,11 +340,11 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -377,13 +361,30 @@
     </option>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/DBMantenimiento.py</url>
+          <line>181</line>
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="1" />
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/ArduinoUNO_Wifly/nooxsenseFLY_v1/nooxsenseFLY_v1.ino">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="117" column="10" selection-start="2878" selection-end="2878" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3030">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/DBMantenimiento.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="1" selection-start="135" selection-end="135" vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="5445">
-          <folding />
+          <folding>
+            <element signature="e#47#61#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -396,23 +397,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/crea_profile.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="26" selection-start="512" selection-end="512" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="315">
-          <folding />
-        </state>
+        <state line="15" column="26" selection-start="512" selection-end="512" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="315" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DBCreaSQLite3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="22" selection-start="2333" selection-end="2333" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
-          <folding />
-        </state>
+        <state line="46" column="22" selection-start="2333" selection-end="2333" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/class_profiles.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="1" max-vertical-offset="2625">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="1" max-vertical-offset="2625" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
@@ -425,7 +420,9 @@
     <entry file="file://$PROJECT_DIR$/DBMantenimiento.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="1" selection-start="135" selection-end="135" vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="5445">
-          <folding />
+          <folding>
+            <element signature="e#47#61#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -438,23 +435,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/crea_profile.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="26" selection-start="512" selection-end="512" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="315">
-          <folding />
-        </state>
+        <state line="15" column="26" selection-start="512" selection-end="512" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="315" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DBCreaSQLite3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="22" selection-start="2333" selection-end="2333" vertical-scroll-proportion="0.0" vertical-offset="690" max-vertical-offset="780">
-          <folding />
-        </state>
+        <state line="46" column="22" selection-start="2333" selection-end="2333" vertical-scroll-proportion="0.0" vertical-offset="690" max-vertical-offset="780" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/class_profiles.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="1" max-vertical-offset="2625">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="1" max-vertical-offset="2625" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
@@ -464,25 +455,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/procesa.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="1" selection-start="405" selection-end="405" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1230">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/crea_profile.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="26" selection-start="512" selection-end="512" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
-          <folding />
-        </state>
+        <state line="15" column="26" selection-start="512" selection-end="512" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DBCreaSQLite3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="22" selection-start="2333" selection-end="2333" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
-          <folding />
-        </state>
+        <state line="46" column="22" selection-start="2333" selection-end="2333" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.pydevproject">
@@ -490,38 +470,41 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DBMantenimiento.py">
+    <entry file="file://$PROJECT_DIR$/class_profiles.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="132" selection-end="132" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5445">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="1" max-vertical-offset="2610" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ArduinoUNO_Wifly/nooxsenseFLY_v1/nooxsenseFLY_v1.ino">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="117" column="10" selection-start="2878" selection-end="2878" vertical-scroll-proportion="0.0" vertical-offset="1755" max-vertical-offset="3030">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="146" selection-end="146" vertical-scroll-proportion="0.19966722" vertical-offset="0" max-vertical-offset="4845">
+        <state line="8" column="0" selection-start="122" selection-end="122" vertical-scroll-proportion="119.07407" vertical-offset="3335" max-vertical-offset="4860">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/procesa.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="1" selection-start="405" selection-end="405" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="1215">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/class_profiles.py">
+    <entry file="file://$PROJECT_DIR$/DBMantenimiento.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="1" max-vertical-offset="2610">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ArduinoUNO_Wifly/nooxsenseFLY_v1/nooxsenseFLY_v1.ino">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="117" column="10" selection-start="4403" selection-end="4403" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2055">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Arduino YUN/nooxsenseYUN_v1/nooxsenseYUN_v1.ino">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="16" selection-start="453" selection-end="453" vertical-scroll-proportion="-2.174267" vertical-offset="1545" max-vertical-offset="2685">
-          <folding />
+        <state line="183" column="30" selection-start="9952" selection-end="9952" vertical-scroll-proportion="0.64891845" vertical-offset="2355" max-vertical-offset="5505">
+          <folding>
+            <element signature="e#47#61#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

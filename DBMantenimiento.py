@@ -172,13 +172,17 @@ def fSensores(queDB):
         print '***********************************************************************************************************'
         print '*disp  * PIN *Nombre                         *D/A*    Valor      * Activo* Valor Actual                   *'
         print '*      *     *                               *   * Desde * Hasta *       * fecha/Hora           * valor   *'   
-        print '***********************************************************************************************************'
+        print '*******+****+********************************+***+*******+*******+*******+**********************+**********'
         sSQL='SELECT cod_dispositivo, PIN_num, PIN_nombre, PIN_tipo, PIN_valor_desde, PIN_valor_hasta, activo, fechahora_actualizacion, valor_actual FROM pin;'
         cursor.execute(sSQL)
         aFilas=cursor.fetchall()
-        
+        iAnterior=0
         for aRegistro in aFilas:
+            if aRegistro[0] != iAnterior:
+                print '-------+----+--------------------------------+-----+------+------+--------+---------------------+---------+'
+                iAnterior = aRegistro[0]
             print '|{0:5d} |{1:3} | {2:30} | {3:3} | {4:4} | {5:4} | {6:6} | {7:19} | {8:4}    |'.format(aRegistro[0],aRegistro[1],aRegistro[2],aRegistro[3],aRegistro[4],aRegistro[5],aRegistro[6],str(aRegistro[7]),aRegistro[8])
+        print '-------+----+--------------------------------+-----+------+------+--------+---------------------+---------+'
         print
         print
         iOp = raw_input('(1) Añadir, (2) Borrar, (3) Modificar, (4) Activar/desactivar (0) Volver - Opción: ')
