@@ -1,17 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+__author__ = 'juanfajardonavarro'
 
-# llamar al programa : python procesa.py 0.0.0.0  0.0.0.0 donde :
-# argumento 1 es la dirección IP del servidor MySQL. 'localhost' si se ejecuta desde el propio servidor
-# argumento 2 es la dirección IP del Arduino local
-# esta aplicación funciona con Bridge_OK cargado en Arduino YUN
 
 import MySQLdb
 import sys
-#import os
 import subprocess
 import datetime
-#import time
 from class_profiles import profilePython
 
 config = profilePython('/etc/config/nooxs.config')

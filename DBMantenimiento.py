@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+__author__ = 'juanfajardonavarro'
 
 import MySQLdb
 import sqlite3
@@ -14,7 +15,22 @@ config = profilePython('/etc/config/nooxs.config')
 
 
 # ----------------------------------FUNCIONES ------------------------------
- 
+
+def fMode (queDB, iCodigo, iMode, iPIN):
+
+    # recoger el nombre del dispositivo.
+    if queDB == "M":
+        cursor.execute("""SELECT IP_dispositivo FROM dispositivos WHERE cod_dispositivo = %s""",(iCodigo))
+    elif queDB == "S":
+        cursor.execute("""SELECT IP_dispositivo FROM dispositivos WHERE cod_dispositivo=?""",(iCodigo))
+    aUnaFila = cursor.fetchone()
+
+    if iMode == "I":
+        iMode = "input"
+    elif iMode == "O":
+        iMode = "output"
+    WgetCommand='curl http://'+aUnaFila[0]+'/arduino/mode/'+iPIN+"/"+iMode
+    sOutput=subprocess.check_output(sWgetCommand,shell=True)
 
 def fConfiguracion(queDB):
     bSalir = False
@@ -182,11 +198,11 @@ def fSensores(queDB):
         print '*** Tabla Sensores / Actuadores ***'
         print 
         print  
-        print '***********************************************************************************************************'
-        print '*disp  * PIN *Nombre                         *D/A*    Valor      * Activo* Valor Actual                   *'
-        print '*      *     *                               *   * Desde * Hasta *       * fecha/Hora           * valor   *'   
-        print '*******+****+********************************+***+*******+*******+*******+**********************+**********'
-        sSQL='SELECT cod_dispositivo, PIN_num, PIN_nombre, PIN_tipo, PIN_valor_desde, PIN_valor_hasta, activo, fechahora_actualizacion, valor_actual FROM pin;'
+        print '*****************************************************************************+*********************************'
+        print '|disp  | PIN |Nombre                         | D/A |    Valor     |Modo| Activo|         Valor Actual           |'
+        print '|      |     |                               |     | Desde| Hasta |    |       | fecha/Hora           | valor   |'
+        print '*******+****+********************************+*****+******+*******+****+*******+**********************+**********'
+        sSQL='SELECT cod_dispositivo, PIN_num, PIN_nombre, PIN_tipo, PIN_valor_desde, PIN_valor_hasta, PIN_mode, activo, fechahora_actualizacion, valor_actual FROM pin;'
         cursor.execute(sSQL)
         aFilas=cursor.fetchall()
         iAnterior=0
@@ -200,13 +216,13 @@ def fSensores(queDB):
                 aUnaFila = cursor.fetchone()
                 print
                 print aUnaFila[0]
-                print '-------+----+--------------------------------+-----+------+------+--------+---------------------+---------+'
+                print '-------+----+--------------------------------+-----+------+-----+------+--------+---------------------+---------+'
                 iAnterior = aRegistro[0]
-            print '|{0:5d} |{1:3} | {2:30} | {3:3} | {4:4} | {5:4} | {6:6} | {7:19} | {8:4}    |'.format(aRegistro[0],aRegistro[1],aRegistro[2],aRegistro[3],aRegistro[4],aRegistro[5],aRegistro[6],str(aRegistro[7]),aRegistro[8])
-        print '-------+----+--------------------------------+-----+------+------+--------+---------------------+---------+'
+            print '|{0:5d} |{1:3} | {2:30} | {3:3} | {4:4} | {5:4} | {6:3} | {7:6} | {8:19} | {9:4}    |'.format(aRegistro[0],aRegistro[1],aRegistro[2],aRegistro[3],aRegistro[4],aRegistro[5],aRegistro[6],aRegistro[7],str(aRegistro[8]),aRegistro[9])
+        print '-------+----+--------------------------------+-----+------+-------+----+--------+---------------------+---------+'
         print
         print
-        iOp = raw_input('(1) Añadir, (2) Borrar, (3) Modificar, (4) Activar/desactivar (0) Volver - Opción: ')
+        iOp = raw_input('(1) Añadir, (2) Borrar, (3) Modificar, (4) Activar/desactivar (5) poner valor (0) Volver - Opción: ')
         
         if iOp==str(0): # cambio el valor de salir a verdadero para salir del WHILE
             bSalir=True
@@ -232,15 +248,23 @@ def fSensores(queDB):
             if sTipo == "A":
                 iDesde = raw_input('Valor Desde: ')
                 iHasta = raw_input('Valor Hasta: ')
+                iMode = ""
             else:
                 iDesde=0
                 iHasta=0
+                iMode = raw_input('Modo [I]nput o [O]utput : ')
             iActivo = raw_input('Activo ([1] Activo , [0] No Activo) : ')
             if queDB == "M":
                 cursor.execute("""UPDATE pin SET cod_dispositivo=%s,PIN_num=%s, PIN_nombre=%s, PIN_tipo=%s, PIN_valor_desde=%s, PIN_valor_hasta=%s, activo=%s WHERE cod_dispositivo=%s AND PIN_num=%s""",(iRegistro, iPIN, sNombre, sTipo, iDesde, iHasta, iActivo,iRegistro, iPIN))
             elif queDB == "S":   
                 cursor.execute("""UPDATE pin SET cod_dispositivo=?,PIN_num=?, PIN_nombre=?, PIN_tipo=?, PIN_valor_desde=?, PIN_valor_hasta=?, activo=? WHERE cod_dispositivo=? AND PIN_num=?""",(iRegistro, iPIN, sNombre, sTipo, iDesde, iHasta, iActivo,iRegistro, iPIN))
             db.commit()
+
+            # poner el pin en mode PIN_mode
+            if sTipo == "D" and (iMode == "I" or iMode == "O"):
+                fMode(queDB, iRegistro, iMode, iPIN)
+            else:
+                print ("Modo incorrecto, debe de ser O para Output o I para Input. Solo se admiten esos valores. Vuelva a intentarlo.")
         elif iOp == str(1): # Añadir registro
             print '*** FUNCIÓN : Añadir Registro ***'
             iCodigo = raw_input('Codigo Dispositivo -integer-: ')
@@ -250,15 +274,23 @@ def fSensores(queDB):
             if sTipo == "A":
                 iDesde = raw_input('Valor Desde: ')
                 iHasta = raw_input('Valor Hasta: ')
+                iMode = ""
             else:
                 iDesde = 0
                 iHasta = 0
+                iMode = raw_input('Modo [I]nput o [O]utput : ')
             iActivo = raw_input('[1] Activo , [0] No Activo) : ')
             if queDB == "M":
-                cursor.execute("""INSERT INTO pin (cod_dispositivo, PIN_num, PIN_nombre, PIN_tipo, PIN_valor_desde, PIN_valor_hasta, activo) VALUES (%s, %s, %s, %s, %s, %s, %s)""",(iCodigo, iPIN, sNombre, sTipo, iDesde, iHasta, iActivo))
+                cursor.execute("""INSERT INTO pin (cod_dispositivo, PIN_num, PIN_nombre, PIN_tipo, PIN_valor_desde, PIN_valor_hasta, activo, PIN_mode) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)""",(iCodigo, iPIN, sNombre, sTipo, iDesde, iHasta, iActivo, iMode))
             elif queDB == "S":   
-                cursor.execute("""INSERT INTO pin (cod_dispositivo, PIN_num, PIN_nombre, PIN_tipo, PIN_valor_desde, PIN_valor_hasta, activo) VALUES (?, ?, ?, ?, ?, ?, ?)""",(iCodigo, iPIN, sNombre, sTipo, iDesde, iHasta, iActivo))
+                cursor.execute("""INSERT INTO pin (cod_dispositivo, PIN_num, PIN_nombre, PIN_tipo, PIN_valor_desde, PIN_valor_hasta, activo, PIN_mode) VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",(iCodigo, iPIN, sNombre, sTipo, iDesde, iHasta, iActivo, iMode))
             db.commit()
+
+            # poner el pin en mode PIN_mode
+            if sTipo == "D" and (iMode == "I" or iMode == "O"):
+                fMode(queDB, iCodigo, iMode, iPIN)
+            else:
+                print ("Modo incorrecto, debe de ser O para Output o I para Input. Solo se admiten esos valores. Vuelva a intentarlo.")
         elif iOp == str(4): #Activar / Desactivar
             print '*** FUNCIÓN : Activar / Desactivar ***'
             iCodigo = raw_input('Código de Dispositivo: ')
@@ -282,6 +314,8 @@ def fSensores(queDB):
                     elif queDB == "S":   
                         cursor.execute("""UPDATE pin SET activo=1 WHERE cod_dispositivo=? AND PIN_num=?""",(iCodigo, iPIN))
                 db.commit()
+        elif iOp == str(5): # poner valor a un PIN
+
 
 def fRegistro(queDB):
     bSalir = False
