@@ -315,6 +315,7 @@ def fSensores(queDB):
                         cursor.execute("""UPDATE pin SET activo=1 WHERE cod_dispositivo=? AND PIN_num=?""",(iCodigo, iPIN))
                 db.commit()
         elif iOp == str(5): # poner valor a un PIN
+            # poner valor
 
 
 def fRegistro(queDB):

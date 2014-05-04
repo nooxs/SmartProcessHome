@@ -32,7 +32,7 @@ dFechaProceso = datetime.datetime.today()
 ###############################################################
 # FUNCIONES ###################################################
 ###############################################################
-def fSumariza(dDesde,dHasta)
+def fSumariza(dDesde,dHasta):
     # Varfecha igual ayer ( esto lo hago para al menos entrar una cez al bucle)
 
     # Do while varfecha menor hoy
@@ -49,9 +49,57 @@ def fSumariza(dDesde,dHasta)
     # Cuento total reg igual al num de minutos
     # Cuento
     #
-    dVarFecha = dFechaProceso+datetime.timedelta(days=-1)
-    do while dVarFecha < 
 
+    dVarFecha = dFechaProceso+datetime.timedelta(days=-1)
+    bSalir = False
+    aFechas = []
+    while not bSalir:
+        sSQL = 'SELECT fechahora, cod_dispositivo, PIN_num, PIN_valor FROM registroinstantaneo WHERE fechahora < '
+        sSQL = sSQL + sArgDB + ';'
+        cursor.execute(sSQL,dHasta)
+
+        aFilasI=cursor.fetchall()
+
+        dFechaAnterior = aFilasI[0][0]
+        aFechas.append(dFechaAnterior)
+        # comprobar si hay registro en registrodiario
+        iCodDispositivo = aFilas[0][1]
+        sPIN = aFilas[0][2]
+        iValor = aFilas[0][3]
+        sSQL = 'SELECT * FROM registrodiario WHERE cod_dispositivo = '
+        sSQL = sSQL + sArgDB + ' AND PIN_num = '+ sArgDB + ' AND fecha = '+sArgDB+' ;'
+        cursor.execute(sSQL,(iCodDispositivo, sPIN,datetime.datetime.date(dFechaAnterior)))
+        aFilasR = cursor.fetchall()
+        if len(aFilasR) == 0:
+            # no existe registro en registrodiario
+            #
+            #  esto SOLO GUARDA PARA PIN DIGITAL y OUTPUT.
+            # falta toda la parte para pines digitales INPUT y pines analogicos
+            #
+            #
+            #
+            sSQL = 'INSERT INTO registrodiario VALUES ('+sArgDB+', '+sArgDB+',O,0,1,0'+', '+sArgDB+');'
+            cursor.execute(sSQL,(iCodDispositivo,sPIN,datetime.datetime.date(dFechaAnterior)))
+            db.commit()
+
+
+        else:
+            # ya existia un registro en registrodiario
+
+        for aRegistro in aFilasI:
+
+            if datetime.datetime.date(aRegistro[0]) != datetime.datetime.date(dFechaAnterior):
+                # cambiado de día
+                dFechaAnterior = aRegistro[0]
+                aFechas.append(dFechaAnterior)
+            else:
+                # estamos en el mismo día
+
+        #print len(aFechas)
+        #x=raw_input()
+        for x in aFechas:
+            print 'dia ',str(x)
+        bSalir= True
 
 ###############################################################
 # PRINCIPAL ###################################################
@@ -61,8 +109,10 @@ try:
     sUser = config.profile('MySQL','USER')
     sPass = config.profile('MySQL','PASS')
     sDB = config.profile('MySQL','DB')
+    queDB = config.profile('DB', 'db')
+    sArgDB = config.profile('DB','Argumentos')
     db=MySQLdb.connect(host=sHost,user=sUser,passwd=sPass,db=sDB)
-
+    cursor=db.cursor()
     os.system('clear')
 
 
