@@ -236,6 +236,7 @@ def fSensores(queDB):
         if iOp==str(0): # cambio el valor de salir a verdadero para salir del WHILE
             bSalir=True
             db.commit()
+
         elif iOp == str(2): # Borrar registro
             print '*** FUNCIÓN: Borrar Registro ***'
             iRegistro = raw_input('Código de Dispositivo: ')
@@ -270,18 +271,23 @@ def fSensores(queDB):
                 iDesde=0
                 iHasta=0
                 iMode = raw_input('Modo [I]nput o [O]utput : ')
-            iActivo = raw_input('Activo ([1] Activo , [0] No Activo) : ')
-            if queDB == "M":
-                cursor.execute("""UPDATE pin SET cod_dispositivo=%s,PIN_num=%s, PIN_nombre=%s, PIN_tipo=%s, PIN_valor_desde=%s, PIN_valor_hasta=%s, activo=%s WHERE cod_dispositivo=%s AND PIN_num=%s""",(iRegistro, iPIN, sNombre, sTipo, iDesde, iHasta, iActivo,iRegistro, iPIN))
-            elif queDB == "S":   
-                cursor.execute("""UPDATE pin SET cod_dispositivo=?,PIN_num=?, PIN_nombre=?, PIN_tipo=?, PIN_valor_desde=?, PIN_valor_hasta=?, activo=? WHERE cod_dispositivo=? AND PIN_num=?""",(iRegistro, iPIN, sNombre, sTipo, iDesde, iHasta, iActivo,iRegistro, iPIN))
-            db.commit()
+            iActivo = 0
 
-            # poner el pin en mode PIN_mode
-            if sTipo == "D" and (iMode == "I" or iMode == "O"):
-                fMode(queDB, iRegistro, iMode, iPIN)
-            else:
-                print ("Modo incorrecto, debe de ser O para Output o I para Input. Solo se admiten esos valores. Vuelva a intentarlo.")
+            # comprobar si está HIGH. Si está HIHG no se puede modificar
+            sSQL = 'SELECT activo, valor_actual FROM pin WHERE cod_dispositivo='+sArgDB+' AND PIN_num='+sArgDB+';'
+            cursor.execute(sSQL,(iRegistro, iPIN))
+            aFilas=cursor.fetchone()
+            if aFilas[1] == 0:
+                sSQL = "UPDATE pin SET cod_dispositivo="+sArgDB+" ,PIN_num="+sArgDB+", PIN_nombre="+sArgDB+", PIN_tipo="+sArgDB+", PIN_valor_desde="+sArgDB+", PIN_valor_hasta="+sArgDB+" WHERE cod_dispositivo="+sArgDB+" AND PIN_num="+sArgDB+";"
+                cursor.execute(sSQL,(iRegistro, iPIN, sNombre, sTipo, iDesde, iHasta,iRegistro, iPIN))
+                db.commit()
+
+                # poner el pin en mode PIN_mode
+                if sTipo == "D" and (iMode == "I" or iMode == "O"):
+                    fMode(queDB, iRegistro, iMode, iPIN)
+                else:
+                    print ("Modo incorrecto, debe de ser O para Output o I para Input. Solo se admiten esos valores. Vuelva a intentarlo.")
+
         elif iOp == str(1): # Añadir registro
             print '*** FUNCIÓN : Añadir Registro ***'
             iCodigo = raw_input('Codigo Dispositivo -integer-: ')
@@ -296,7 +302,7 @@ def fSensores(queDB):
                 iDesde = 0
                 iHasta = 0
                 iMode = raw_input('Modo [I]nput o [O]utput : ')
-            iActivo = raw_input('[1] Activo , [0] No Activo) : ')
+            iActivo = 0
             if queDB == "M":
                 cursor.execute("""INSERT INTO pin (cod_dispositivo, PIN_num, PIN_nombre, PIN_tipo, PIN_valor_desde, PIN_valor_hasta, activo, PIN_mode) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)""",(iCodigo, iPIN, sNombre, sTipo, iDesde, iHasta, iActivo, iMode))
             elif queDB == "S":   
@@ -308,29 +314,34 @@ def fSensores(queDB):
                 fMode(queDB, iCodigo, iMode, iPIN)
             else:
                 print ("Modo incorrecto, debe de ser O para Output o I para Input. Solo se admiten esos valores. Vuelva a intentarlo.")
+
         elif iOp == str(4): #Activar / Desactivar
             print '*** FUNCIÓN : Activar / Desactivar ***'
             iCodigo = raw_input('Código de Dispositivo: ')
             iPIN = raw_input('Numero de PIN a Activar / Desactivar: ')
-            sConfirmacion = raw_input('¿estás seguro (s/n)? :')
-            if sConfirmacion == "s" or sConfirmacion == "S":
-                # comprobar si estaba activo o desactivo y cambiar
-                if queDB == "M":
-                    cursor.execute("""SELECT activo FROM pin WHERE cod_dispositivo=%s AND PIN_num=%s""",(iCodigo, iPIN))
-                elif queDB == "S":   
-                    cursor.execute("""SELECT activo FROM pin WHERE cod_dispositivo=? AND PIN_num=?""",(iCodigo, iPIN))
-                aFilas=cursor.fetchone()
-                if aFilas[0] == 1:
-                    if queDB == "M":
-                        cursor.execute("""UPDATE pin SET activo=0 WHERE cod_dispositivo=%s AND PIN_num=%s""",(iCodigo, iPIN))
-                    elif queDB == "S":   
-                        cursor.execute("""UPDATE pin SET activo=0 WHERE cod_dispositivo=? AND PIN_num=?""",(iCodigo, iPIN))
-                elif aFilas[0] == 0:
-                    if queDB == "M":
-                        cursor.execute("""UPDATE pin SET activo=1 WHERE cod_dispositivo=%s AND PIN_num=%s""",(iCodigo, iPIN))
-                    elif queDB == "S":   
-                        cursor.execute("""UPDATE pin SET activo=1 WHERE cod_dispositivo=? AND PIN_num=?""",(iCodigo, iPIN))
-                db.commit()
+
+            # comprobar si está HIGH. Si está HIHG no se puede desactivar
+            sSQL = 'SELECT activo, valor_actual FROM pin WHERE cod_dispositivo='+sArgDB+' AND PIN_num='+sArgDB+';'
+            cursor.execute(sSQL,(iCodigo, iPIN))
+            aFilas=cursor.fetchone()
+            if aFilas[1] == 0:
+
+                sConfirmacion = raw_input('¿estás seguro (s/n)? :')
+                if sConfirmacion == "s" or sConfirmacion == "S":
+                    # comprobar si estaba activo o desactivo y cambiar
+                    sSQL = "SELECT activo,PIN_tipo, PIN_mode FROM pin WHERE cod_dispositivo="+sArgDB+" AND PIN_num="+sArgDB+";"
+                    cursor.execute(sSQL,(iCodigo, iPIN))
+                    aFilas=cursor.fetchone()
+                    if aFilas[0] == 1:
+                        sSQL = 'UPDATE pin SET activo=0 WHERE cod_dispositivo=' + sArgDB + ' AND PIN_num=' + sArgDB + ';'
+                        cursor.execute(sSQL,(iCodigo, iPIN))
+                    elif aFilas[0] == 0 and aFilas[1] == "D" and aFilas[2] == "O":
+                        sSQL = 'UPDATE pin SET activo=1 WHERE cod_dispositivo=' + sArgDB + ' AND PIN_num=' + sArgDB + ';'
+                        cursor.execute(sSQL,(iCodigo, iPIN))
+                        # poner el mode a output
+                        fMode(queDB, iCodigo, "O", iPIN)
+
+                    db.commit()
 
 
 def fRegistro(queDB):
