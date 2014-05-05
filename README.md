@@ -256,7 +256,7 @@ La revisión del estado de los pines se hace a través de la librería Bridge qu
 
 		chmod 777 /etc/config/nooxs.config
 			
-* configurar los parámetros de conexión a la base de datos y la IP local del Arduino.
+* configurar los parámetros de conexión a la base de datos y la IP local del Arduino en /etc/config/nooxs.config.
 
 		[DB] host - poner la dirección IP del Sistema de Control donde se encuentra la Base de Datos
 		User - usuario de conexión a la base de datos.
@@ -269,7 +269,6 @@ La revisión del estado de los pines se hace a través de la librería Bridge qu
 **INSTALAR**
 
 	opkg update (para actualizar los paquetes)
-	nano
 	opkg install nano
 	vi /etc/profile
 	añadir primera linea de la lista export
