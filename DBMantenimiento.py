@@ -91,7 +91,17 @@ def fConfiguracion(queDB):
                 cursor.execute("""INSERT INTO configuracion VALUES (?, ?, ?, ?)""",(iCodigo, sNombre, sValor, sNotas))
             db.commit()
             
-    
+
+def CreaPIN(iDisp,sPIN):
+    sNombre = "PIN "+sPIN
+    sTipo = "D"
+    sMode = "I"
+    dFecha = datetime.datetime.today()
+    sSQL = "INSERT INTO pin VALUES("+sArgDB+", "+sArgDB+", "+sArgDB+",0,0, "+sArgDB+",0,"+sArgDB+",0, "+sArgDB+");"
+    cursor.execute(sSQL,(iDisp, sPIN, sTipo, sNombre,dFecha,sMode))
+    print 'creado PIN ',sPIN
+    db.commit()
+
 def fDispositivos(queDB):
     bSalir = False
     while not bSalir:
@@ -148,6 +158,7 @@ def fDispositivos(queDB):
             elif queDB == "S":    
                 cursor.execute("""UPDATE dispositivos SET nom_dispositivo=?,MAC_dispositivo=?, IP_dispositivo=?, clave_dispositivo=?, activo=? WHERE cod_dispositivo=?""",(sNombre, sMAC, sIP, sClave, iActivo,iRegistro))
             db.commit()
+
         elif iOp == str(1): # Añadir registro
             print '*** FUNCIÓN : Añadir Registro ***'
             iCodigo = raw_input('Codigo Dispositivo -integer-: ')
@@ -155,12 +166,14 @@ def fDispositivos(queDB):
             sMAC = raw_input('MAC : ')
             sIP = raw_input('IP : ')
             sClave = raw_input('Clave : ')
-            iActivo = raw_input('Activo (1 Activo , 0 No Activo) : ')
-            if queDB == "M":
-                cursor.execute("""INSERT INTO dispositivos VALUES(%s, %s, %s, %s, %s, %s)""",(iCodigo, sNombre, sMAC, sIP, sClave, iActivo))
-            elif queDB == "S":   
-                cursor.execute("""INSERT INTO dispositivos VALUES(?, ?, ?, ?, ?, ?)""",(iCodigo, sNombre, sMAC, sIP, sClave, iActivo))
+            iActivo = 0
+            sSQL = "INSERT INTO dispositivos VALUES("+sArgDB+", "+sArgDB+", "+sArgDB+", "+sArgDB+", "+sArgDB+", "+sArgDB+");"
+            cursor.execute(sSQL,(iCodigo, sNombre, sMAC, sIP, sClave, iActivo))
             db.commit()
+            sConfirmacion = raw_input("A continuación se creará la estructura básica. Pulse una tecla")
+            for i in range(14):
+                CreaPIN(iCodigo,str(i))
+
         elif iOp == str(4): #Activar / Desactivar
             print '*** FUNCIÓN : Activar / Desactivar ***'
             iRegistro = raw_input('Numero de registro a Activar / Desactivar: ')
