@@ -100,10 +100,15 @@ En SAS Arduino YUN: miIP debe de contener la IP local. DispExternos debe de esta
 En el caso de Arduino UNO con Wifly Shield, este no tiene nooxs.config. En el nooxs.config del SC (Raspberry PI) configuraremos como IP remotos tantos dispositivos externos como placas Arduino UNO + Wifly tengamos en la red y se encargará el procesa.py (dentro del cron) del linux de Raspberry PI de procesar en remoto los estados de los pines de las SAS remotos configurados.
 
 
-**Interfaz WEB**
+**Interfaz WEB -pendiente-**
 
 Desde el interfaz web se podrá forzar la ejecución de un evento concreto haciendo una llamada a la rutina concreta.
 
+**sph.py: Interfaz consola de manejo de Actuadores**
+
+A falta del interface web, se ha desarrollado esta aplicación python para el manejo de los pines digitales en modo Output (en próximas versiones se incluirán el resto de pines).
+Nos muestra el listado de dispositivos conectados en la red y los pines activos de cada dispositivo.
+Podremos mandar HIGH o LOW a un pin en concreto.
 
 **Base de datos nooxsense.db**
 
