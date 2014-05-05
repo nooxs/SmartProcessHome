@@ -34,9 +34,9 @@ try:
     db=MySQLdb.connect(host=sHost,user=sUser,passwd=sPass,db=sDB)
     cursor=db.cursor()
 
-    salir = False
+    bSalir = False
 
-    while not salir:
+    while not bSalir:
         os.system('clear')
         print 'NOOXS - SmartProcessHome'
         print '*** Sensores / Actuadores de la red ***'
@@ -61,11 +61,11 @@ try:
                 print aUnaFila[0]
                 print '-------+----+--------------------------------+---------------------+---------+'
                 iAnterior = aRegistro[0]
-            if aRegistro[9] == 1:
-                sColor = "[1;32m"
-            elif aRegistro[9] == 0:
-                sColor ="[1;31m"
-            print chr(27)+sColor+'|{0:5d} |{1:3} | {2:30} | {3:19} | {4:4}    |'.format(aRegistro[0],aRegistro[1],aRegistro[2],aRegistro[4],str(aRegistro[3]),aRegistro[4])+chr(27)+"[1;m"
+            if aRegistro[4] == 1:
+                sColor = "[1;42m"
+            elif aRegistro[4] == 0:
+                sColor ="[1;41m"
+            print chr(27)+sColor+'|{0:5d} |{1:3} | {2:30} | {3:19} | {4:4}    |'.format(aRegistro[0],aRegistro[1],aRegistro[2],str(aRegistro[3]),aRegistro[4])+chr(27)+"[1;m"
 
         print '-------+----+--------------------------------+---------------------+---------+'
         print
@@ -78,8 +78,8 @@ try:
             print '*** FUNCIÓN: Cambia Valor ***'
             iRegistro = raw_input('Código de Dispositivo: ')
             iPIN = raw_input('PIN: ')
-            sSQL = "SELECT activo FROM pin WHERE cod_dispositivo="+sArgDB+" AND PIN_num="+sArgDB+";""
-            cursor.execute(sSQL,(iCodigo, iPIN))
+            sSQL = "SELECT valor_actual FROM pin WHERE cod_dispositivo="+sArgDB+" AND PIN_num="+sArgDB+";"
+            cursor.execute(sSQL,(iRegistro, iPIN))
             aFilas=cursor.fetchone()
             if len(aFilas)== 1:
                 if aFilas[0] == 1:
@@ -96,11 +96,11 @@ try:
                     cursor.execute(sSQL,(iRegistro))
                     aUnaFila = cursor.fetchone()
                     if len(aUnaFila) == 1:
-                        sSQL = "UPDATE pin SET activo="+sArgDB+" WHERE cod_dispositivo="+sArgDB+" AND PIN_num="+sArgDB+";"
-                        cursor.execute(sSQL,(iValor, iCodigo, iPIN))
+                        sSQL = "UPDATE pin SET valor_actual="+sArgDB+",fechahora_actualizacion="+sArgDB+" WHERE cod_dispositivo="+sArgDB+" AND PIN_num="+sArgDB+";"
+                        cursor.execute(sSQL,(iValor, datetime.datetime.today(),iRegistro, iPIN))
                         db.commit()
                         # CURL
-                        WgetCommand='curl http://'+aUnaFila[0]+'/arduino/digital/'+iPIN+"/"+str(iValor)
+                        sWgetCommand='curl http://'+aUnaFila[0]+'/arduino/digital/'+iPIN+"/"+str(iValor)
                         sOutput=subprocess.check_output(sWgetCommand,shell=True)
 
             elif len(aFilas) == 0:

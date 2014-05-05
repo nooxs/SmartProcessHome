@@ -29,7 +29,7 @@ def fMode (queDB, iCodigo, iMode, iPIN):
         iMode = "input"
     elif iMode == "O":
         iMode = "output"
-    WgetCommand='curl http://'+aUnaFila[0]+'/arduino/mode/'+iPIN+"/"+iMode
+    sWgetCommand='curl http://'+aUnaFila[0]+'/arduino/mode/'+iPIN+"/"+iMode
     sOutput=subprocess.check_output(sWgetCommand,shell=True)
 
 def fConfiguracion(queDB):
@@ -108,7 +108,11 @@ def fDispositivos(queDB):
         aFilas=cursor.fetchall()
         
         for aRegistro in aFilas:
-            print '|{0:4d} |{1:30} | {2:17} | {3:15} | {4:30} | {5:6}    |'.format(aRegistro[0],aRegistro[1],aRegistro[2],aRegistro[3],aRegistro[4],aRegistro[5])
+            if aRegistro[5] == 1:
+                sColor = "[1;42m"
+            elif aRegistro[5] == 0:
+                sColor ="[1;41m"
+            print chr(27)+sColor+'|{0:4d} |{1:30} | {2:17} | {3:15} | {4:30} | {5:6}    |'.format(aRegistro[0],aRegistro[1],aRegistro[2],aRegistro[3],aRegistro[4],aRegistro[5])+chr(27)+'[1;m'
         print
         print
         iOp = raw_input('(1) Añadir, (2) Borrar, (3) Modificar, (4) Activar/desactivar (0) Volver - Opción: ')
@@ -218,11 +222,16 @@ def fSensores(queDB):
                 print aUnaFila[0]
                 print '-------+----+--------------------------------+-----+------+-----+------+--------+---------------------+---------+'
                 iAnterior = aRegistro[0]
-            print '|{0:5d} |{1:3} | {2:30} | {3:3} | {4:4} | {5:4} | {6:3} | {7:6} | {8:19} | {9:4}    |'.format(aRegistro[0],aRegistro[1],aRegistro[2],aRegistro[3],aRegistro[4],aRegistro[5],aRegistro[6],aRegistro[7],str(aRegistro[8]),aRegistro[9])
+
+            if aRegistro[7] == 1:
+                sColor = "[1;42m"
+            elif aRegistro[7] == 0:
+                sColor ="[1;41m"
+            print chr(27)+sColor+'|{0:5d} |{1:3} | {2:30} | {3:3} | {4:4} | {5:4} | {6:3} | {7:6} | {8:19} | {9:4}    |'.format(aRegistro[0],aRegistro[1],aRegistro[2],aRegistro[3],aRegistro[4],aRegistro[5],aRegistro[6],aRegistro[7],str(aRegistro[8]),aRegistro[9])+chr(27)+'[1;m'
         print '-------+----+--------------------------------+-----+------+-------+----+--------+---------------------+---------+'
         print
         print
-        iOp = raw_input('(1) Añadir, (2) Borrar, (3) Modificar, (4) Activar/desactivar (5) poner valor (0) Volver - Opción: ')
+        iOp = raw_input('(1) Añadir, (2) Borrar, (3) Modificar, (4) Activar/desactivar (0) Volver - Opción: ')
         
         if iOp==str(0): # cambio el valor de salir a verdadero para salir del WHILE
             bSalir=True
@@ -231,13 +240,21 @@ def fSensores(queDB):
             print '*** FUNCIÓN: Borrar Registro ***'
             iRegistro = raw_input('Código de Dispositivo: ')
             iPIN = raw_input('PIN: ')
-            sConfirmacion = raw_input('¿estás seguro (s/n)? :')
-            if sConfirmacion == "s" or sConfirmacion == "S":
-                if queDB == "M":
-                    cursor.execute("""DELETE FROM pin WHERE cod_dispositivo = %s AND PIN_num = %s""", (iRegistro,iPIN))
-                elif queDB == "S":   
-                    cursor.execute("""DELETE FROM pin WHERE cod_dispositivo = ? AND PIN_num = ?""", (iRegistro,iPIN))
-                db.commit()
+
+            # comprobar si está HIGH. Si está HIHG no se puede borrar
+            # si está activo tampoco se puede borrar
+            sSQL = 'SELECT activo, valor_actual FROM pin WHERE cod_dispositivo='+sArgDB+' AND PIN_num='+sArgDB+';'
+            cursor.execute(sSQL,(iRegistro, iPIN))
+            aFilas=cursor.fetchone()
+            if aFilas[0] == 0 and aFilas[1] == 0:
+
+                sConfirmacion = raw_input('¿estás seguro de borrar ese PIN (s/n)? :')
+                if sConfirmacion == "s" or sConfirmacion == "S":
+                    sSQL = 'DELETE FROM pin WHERE cod_dispositivo ='+sArgDB+' AND PIN_num ='+sArgDB+';'
+                    cursor.execute(sSQL, (iRegistro,iPIN))
+                    db.commit()
+            else:
+                sConfirmacion = raw_input('Error. Pulsa una tecla para volver...')
                 
         elif iOp == str(3): # Modificar Registro
             print '*** FUNCIÓN : Modificar Registro ***'
@@ -314,9 +331,7 @@ def fSensores(queDB):
                     elif queDB == "S":   
                         cursor.execute("""UPDATE pin SET activo=1 WHERE cod_dispositivo=? AND PIN_num=?""",(iCodigo, iPIN))
                 db.commit()
-        elif iOp == str(5): # poner valor a un PIN
-            # poner valor
-            db.commit()
+
 
 def fRegistro(queDB):
     bSalir = False
@@ -393,6 +408,7 @@ try:
             sUser = config.profile('MySQL','USER')
             sPass = config.profile('MySQL','PASS')
             sDB = config.profile('MySQL','DB')
+            sArgDB = config.profile('DB','Argumentos')
             db=MySQLdb.connect(host=sHost,user=sUser,passwd=sPass,db=sDB)
             queDB = "M"
             salir = True
@@ -400,6 +416,7 @@ try:
             sDB = config.profile('SQLite','DB')
             sHost = config.profile('SQLite','host')
             db=sqlite3.connect(sDB)
+            sArgDB = config.profile('DB','Argumentos')
             salir = True
             queDB = "S"
     
