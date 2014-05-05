@@ -72,8 +72,8 @@ aplicación de creación de fichero de configuración nooxs.config
 
 	[MySQL]	# datos de donde encuentra el servidor MySQL en la red
 	host = 192.168.1.125	
-	PASS = jfajardo1
-	USER = root
+	PASS = *****
+	USER = ****
 	DB = nooxsense
 
 	[SQLite]	# datos para el servidor SQLite (solo funciona en local)
@@ -96,6 +96,7 @@ aplicación de creación de fichero de configuración nooxs.config
 	Ext9 =
 
 (hay que eliminar todos las # del fichero nooxs.config)
+
 En SAS Arduino YUN: miIP debe de contener la IP local. DispExternos debe de estar a 0 y no debe de haber ninguna dirección IP de SAS remotos pues cada Arduino YUN procesa sus propios registros de sus pines a través de miIP.
 En el caso de Arduino UNO con Wifly Shield, este no tiene nooxs.config. En el nooxs.config del SC (Raspberry PI) configuraremos como IP remotos tantos dispositivos externos como placas Arduino UNO + Wifly tengamos en la red y se encargará el procesa.py (dentro del cron) del linux de Raspberry PI de procesar en remoto los estados de los pines de las SAS remotos configurados.
 
@@ -109,6 +110,19 @@ Desde el interfaz web se podrá forzar la ejecución de un evento concreto hacie
 A falta del interface web, se ha desarrollado esta aplicación python para el manejo de los pines digitales en modo Output (en próximas versiones se incluirán el resto de pines).
 Nos muestra el listado de dispositivos conectados en la red y los pines activos de cada dispositivo.
 Podremos mandar HIGH o LOW a un pin en concreto.
+
+**crontab:**
+
+	crontab -e
+		* * * * * python /home/pi/nooxs/procesa.py
+		15 23 * * * python /home/pi/nooxs/procesaregistro.py -d
+		
+	/etc/init.d/cron [restart] [stop][start][enable]
+	
+Con estas tareas programadas en el cron conseguimos que:
+
+1. cada minuto se genere el registroinstantaneo de los SAS (no YUN)
+2. una vez al día genera el registro diario
 
 **Base de datos nooxsense.db**
 
@@ -174,7 +188,7 @@ hora             |time        |      |
 
 INDEX: fecha,cod_dispositivo,PIN_num,hora
 
-* Tabla Diario
+* Tabla registrodiario
 
 campo                 | tipo       | PK   |
 ----------------------|------------|------|
@@ -207,7 +221,7 @@ Activa en la placa Arduino YUN un webserver que puede recibor los siguientes com
 
 a través de un navegador o a través de una aplicación (comandos curl):
 
-	http://arduinoYUN_IP/comando
+	curl http://arduinoYUN_IP/comando
 	
 Con este sketch podemos:
 
