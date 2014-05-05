@@ -67,9 +67,11 @@ try:
                                 #el numero de PIn es el valor convertido a int desde la posicion hasta el final
                                 iVPin=int(sOutput[iDonde:])
                                 dFechayHora=datetime.datetime.now()
+                                dFecha = datetime.datetime.date(dFechayHora)
+                                dHora = datetime.datetime.time(dFechayHora)
 
                                 #guardar registroinstantaneo
-                                cursor.execute("""INSERT INTO registroinstantaneo VALUES (%s, %s, %s, %s)""",(iCodDispositivo,dFechayHora,aReg2[0],iVPin))
+                                cursor.execute("""INSERT INTO registroinstantaneo VALUES (%s, %s, %s, %s, %s, %s)""",(iCodDispositivo,dFechayHora,aReg2[0],iVPin, dFecha, dHora))
 
                                 #si el valor actual es diferente al valor anterior cambio el estado
                                 if iVPin != aReg2[3]:

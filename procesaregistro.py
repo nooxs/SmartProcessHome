@@ -32,74 +32,92 @@ dFechaProceso = datetime.datetime.today()
 ###############################################################
 # FUNCIONES ###################################################
 ###############################################################
-def fSumariza(dDesde,dHasta):
-    # Varfecha igual ayer ( esto lo hago para al menos entrar una cez al bucle)
+def ExisteRegistro(iCod,sPIN, dFecha):
+    sSQL = 'SELECT * FROM registrodiario WHERE cod_dispositivo = '
+    sSQL = sSQL + sArgDB + ' AND PIN_num = '+ sArgDB + ' AND fecha = '+sArgDB+' ;'
+    cursor.execute(sSQL,(iCod, sPIN,dFecha))
+    aFilasR = cursor.fetchall()
+    return (len(aFilasR))
 
-    # Do while varfecha menor hoy
 
-    # Leo primer registro
-    # Varfecha igual a fecha registro
-    # Varpin igual a pin
-    # Select todos reg de igual fecha e igual pin
-    # Proceso estos registros de forma diferente si el pin es analogico o digital
-
-    # Para analogico hay que sacar medias
-    # Para digital hay que contar minutos en 1 y minutos en 0
-
-    # Cuento total reg igual al num de minutos
-    # Cuento
+def InsertaRegistro(iCod,sPIN,ip1,ip0,dFecha):
+    # no existe registro en registrodiario
     #
+    #  esto SOLO GUARDA PARA PIN DIGITAL y OUTPUT.
+    # falta toda la parte para pines digitales INPUT y pines analogicos
+    #
+    #
+    #
+    sO = "O"
+    s0 = 0
+    sSQL = 'INSERT INTO registrodiario VALUES ('+sArgDB+', '+sArgDB+', '+sArgDB+', '+sArgDB+', '+sArgDB+' ,'+sArgDB+','+sArgDB+');'
+    cursor.execute(sSQL,(iCod,sPIN,sO,ip1,ip0,s0,dFecha))
 
-    dVarFecha = dFechaProceso+datetime.timedelta(days=-1)
-    bSalir = False
-    aFechas = []
-    while not bSalir:
-        sSQL = 'SELECT fechahora, cod_dispositivo, PIN_num, PIN_valor FROM registroinstantaneo WHERE fechahora < '
-        sSQL = sSQL + sArgDB + ';'
-        cursor.execute(sSQL,dHasta)
 
-        aFilasI=cursor.fetchall()
+def ModificaRegistro(iCod,sPIN,ip1,ip0,dFecha):
+    # ya existia un registro en registrodiario
+    sSQL = 'UPDATE registrodiario SET min0= min0+'+sArgDB+' , min1=min1+'+sArgDB+'  WHERE cod_dispositivo = '
+    sSQL = sSQL + sArgDB + ' AND PIN_num = '+ sArgDB + ' AND fecha = '+sArgDB+' ;'
+    cursor.execute(sSQL,(ip0,ip1,iCod,sPIN,dFecha))
 
-        dFechaAnterior = aFilasI[0][0]
-        aFechas.append(dFechaAnterior)
+
+def fcambia():
+    cursor.execute('SELECT fechahora,PIN_num FROM registroinstantaneo;')
+    aFilas=cursor.fetchall()
+    for aRegistro in aFilas:
+        dFecha = datetime.datetime.date(aRegistro[0])
+        tHora = datetime.datetime.time(aRegistro[0])
+        print dFecha
+        print tHora
+        cursor.execute('UPDATE registroinstantaneo SET fecha=date(fechahora), hora=time(fechahora)')
+
+def fBorrar(dFecha):
+    sSQL = 'DELETE FROM registroinstantaneo WHERE fecha <= '
+    sSQL = sSQL + sArgDB+';'
+    cursor.execute(sSQL,(dFecha))
+    print 'borrar anterior o igual a ', dFecha, ' ---------------------------------------------------'
+
+def fSumariza(dHoy):
+
+    sSQL = 'SELECT fecha, cod_dispositivo, PIN_num, PIN_valor FROM registroinstantaneo WHERE fecha < '
+    sSQL = sSQL + sArgDB + ';'
+    cursor.execute(sSQL,dHoy)
+
+    aFilasI=cursor.fetchall()
+    iNumRegistro =  len(aFilasI)
+    ix = 0
+    if iNumRegistro < 1:
+        print 'No hay registros para procesar...'
+        return
+    dFechaAnterior = aFilasI[0][0]
+    dFechaCambia = dFechaAnterior
+
+    for aRegistro in aFilasI:
+        print str(ix) ,' de ', str(iNumRegistro)
+        dFechaAnterior = aRegistro[0]
         # comprobar si hay registro en registrodiario
-        iCodDispositivo = aFilas[0][1]
-        sPIN = aFilas[0][2]
-        iValor = aFilas[0][3]
-        sSQL = 'SELECT * FROM registrodiario WHERE cod_dispositivo = '
-        sSQL = sSQL + sArgDB + ' AND PIN_num = '+ sArgDB + ' AND fecha = '+sArgDB+' ;'
-        cursor.execute(sSQL,(iCodDispositivo, sPIN,datetime.datetime.date(dFechaAnterior)))
-        aFilasR = cursor.fetchall()
-        if len(aFilasR) == 0:
-            # no existe registro en registrodiario
-            #
-            #  esto SOLO GUARDA PARA PIN DIGITAL y OUTPUT.
-            # falta toda la parte para pines digitales INPUT y pines analogicos
-            #
-            #
-            #
-            sSQL = 'INSERT INTO registrodiario VALUES ('+sArgDB+', '+sArgDB+',O,0,1,0'+', '+sArgDB+');'
-            cursor.execute(sSQL,(iCodDispositivo,sPIN,datetime.datetime.date(dFechaAnterior)))
-            db.commit()
+        iCodDispositivo = aRegistro[1]
+        sPIN = aRegistro[2]
+        iValor = aRegistro[3]
+        iPara1 = 0
+        iPara0 = 0
+        if iValor == 1:
+            iPara1 = 1
+        elif iValor == 0:
+            iPara0 = 1
 
-
+        if ExisteRegistro(iCodDispositivo,sPIN, dFechaAnterior) == 0:
+            InsertaRegistro(iCodDispositivo,sPIN,iPara1, iPara0, dFechaAnterior)
         else:
-            # ya existia un registro en registrodiario
+            ModificaRegistro(iCodDispositivo,sPIN,iPara1, iPara0, dFechaAnterior)
+        ix=ix+1
+        if (dFechaAnterior != dFechaCambia) or (ix == iNumRegistro):
+            dFechaCambia = dFechaAnterior
+            fBorrar(dFechaCambia)
 
-        for aRegistro in aFilasI:
 
-            if datetime.datetime.date(aRegistro[0]) != datetime.datetime.date(dFechaAnterior):
-                # cambiado de día
-                dFechaAnterior = aRegistro[0]
-                aFechas.append(dFechaAnterior)
-            else:
-                # estamos en el mismo día
 
-        #print len(aFechas)
-        #x=raw_input()
-        for x in aFechas:
-            print 'dia ',str(x)
-        bSalir= True
+    db.commit()
 
 ###############################################################
 # PRINCIPAL ###################################################
@@ -117,18 +135,18 @@ try:
 
 
     if sys.argv[1] == "-d":
-        dAyerDesde = dFechaProceso+datetime.timedelta(days=-1)
-        dAyerDesde = dAyerDesde.replace(hour=0)
-        dAyerDesde = dAyerDesde.replace(minute=0)
-        dAyerDesde = dAyerDesde.replace(second=0)
-        dAyerHasta = dAyerDesde + datetime.timedelta(hours=24)
+        #dAyerDesde = dFechaProceso+datetime.timedelta(days=-1)
+        #dAyerDesde = dAyerDesde.replace(hour=0)
+        #dAyerDesde = dAyerDesde.replace(minute=0)
+        #dAyerDesde = dAyerDesde.replace(second=0)
+        #dAyerHasta = dAyerDesde + datetime.timedelta(hours=24)
+        dHoy = datetime.date.today()
+        #print "Procesando el día de ayer... "
+        #print "hoy : ", str(dFechaProceso)
+        #print "ayer es desde : ", str(dAyerDesde)
+        #print "hasta: ",str(dAyerHasta)
 
-        print "Procesando el día de ayer... "
-        print "hoy : ", str(dFechaProceso)
-        print "ayer es desde : ", str(dAyerDesde)
-        print "hasta: ",str(dAyerHasta)
-
-        fSumariza(dAyerDesde, dAyerHasta)
+        fSumariza(dHoy)
 
     elif sys.argv[1] == "-m":
         print "Procesando el mes pasado... "
@@ -140,7 +158,7 @@ try:
         dPrimerDiaEsteMes = dPrimerDiaEsteMes.replace(day=1)
         print "hasta : ", dPrimerDiaEsteMes.strftime('%d-%m-%Y')
 
-        fSumariza(dMesPasado,dPrimerDiaEsteMes)
+        #fSumariza(dPrimerDiaEsteMes)
 
 
 except db.Error, e:

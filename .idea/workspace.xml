@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ce3a403a-ce99-4b78-b416-89dfc564edb2" name="Default" comment="" />
+    <list default="true" id="ce3a403a-ce99-4b78-b416-89dfc564edb2" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Arduino_GENeral/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Arduino_GENeral/nooxsenseGEN_v1/nooxsenseGEN_v1.ino" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DBMantenimiento.py" afterPath="$PROJECT_DIR$/DBMantenimiento.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/procesa.py" afterPath="$PROJECT_DIR$/procesa.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/procesaregistro.py" afterPath="$PROJECT_DIR$/procesaregistro.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="SmartProcessHome.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -11,6 +21,9 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/SmartProcessHome$DBMantenimiento.coverage" NAME="DBMantenimiento Coverage Results" MODIFIED="1399111438569" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -26,8 +39,13 @@
       <file leaf-file-name="procesa.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/procesa.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="1" selection-start="405" selection-end="405" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="1215">
-              <folding />
+            <state line="73" column="171" selection-start="3867" selection-end="3867" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1395">
+              <folding>
+                <marker date="1399228567000" expanded="true" signature="2095:2187" placeholder="SELECT cod_d..dispositivos..." />
+                <marker date="1399228567000" expanded="true" signature="2545:2640" placeholder="SELECT PIN_n..pin..." />
+                <marker date="1399228567000" expanded="true" signature="3746:3809" placeholder="INSERT INTO ..." />
+                <marker date="1399228567000" expanded="true" signature="4160:4270" placeholder="UPDATE pin S..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -35,9 +53,79 @@
       <file leaf-file-name="DBMantenimiento.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DBMantenimiento.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="183" column="30" selection-start="9952" selection-end="9952" vertical-scroll-proportion="0.64891845" vertical-offset="2355" max-vertical-offset="5505">
+            <state line="338" column="0" selection-start="18947" selection-end="18947" vertical-scroll-proportion="0.7237937" vertical-offset="240" max-vertical-offset="2550">
               <folding>
-                <element signature="e#47#61#0" expanded="true" />
+                <element signature="e#81#95#0" expanded="true" />
+                <element signature="e#397#951#0" expanded="false" />
+                <element signature="e#984#4218#0" expanded="false" />
+                <element signature="e#4267#10151#0" expanded="false" />
+                <element signature="e#10183#18096#0" expanded="false" />
+                <marker date="1399244018000" expanded="true" signature="481:545" placeholder="SELECT IP_di..dispositivos..." />
+                <marker date="1399244018000" expanded="true" signature="611:674" placeholder="SELECT IP_di..dispositivos..." />
+                <marker date="1399244018000" expanded="true" signature="1615:1703" placeholder="SELECT cod_p..configuracion..." />
+                <marker date="1399244018000" expanded="true" signature="2545:2593" placeholder="DELETE FROM ..." />
+                <marker date="1399244018000" expanded="true" signature="2686:2735" placeholder="DELETE FROM ..." />
+                <marker date="1399244018000" expanded="true" signature="3213:3314" placeholder="UPDATE confi..." />
+                <marker date="1399244018000" expanded="true" signature="3425:3524" placeholder="UPDATE confi..." />
+                <marker date="1399244018000" expanded="true" signature="3956:4005" placeholder="INSERT INTO ..." />
+                <marker date="1399244018000" expanded="true" signature="4110:4155" placeholder="INSERT INTO ..." />
+                <marker date="1399244018000" expanded="true" signature="4890:5007" placeholder="SELECT cod_d..dispositivos..." />
+                <marker date="1399244018000" expanded="true" signature="6048:6097" placeholder="DELETE FROM ..." />
+                <marker date="1399244018000" expanded="true" signature="6190:6240" placeholder="DELETE FROM ..." />
+                <marker date="1399244018000" expanded="true" signature="6932:7068" placeholder="UPDATE dispo..." />
+                <marker date="1399244018000" expanded="true" signature="7192:7324" placeholder="UPDATE dispo..." />
+                <marker date="1399244018000" expanded="true" signature="7876:7931" placeholder="INSERT INTO ..." />
+                <marker date="1399244018000" expanded="true" signature="8051:8100" placeholder="INSERT INTO ..." />
+                <marker date="1399244018000" expanded="true" signature="8703:8762" placeholder="SELECT * FRO..pin..." />
+                <marker date="1399244018000" expanded="true" signature="8827:8885" placeholder="SELECT * FRO..pin..." />
+                <marker date="1399244018000" expanded="true" signature="9122:9176" placeholder="SELECT activ..dispositivos..." />
+                <marker date="1399244018000" expanded="true" signature="9276:9331" placeholder="SELECT activ..dispositivos..." />
+                <marker date="1399244018000" expanded="true" signature="9520:9575" placeholder="UPDATE dispo..." />
+                <marker date="1399244018000" expanded="true" signature="9683:9739" placeholder="UPDATE dispo..." />
+                <marker date="1399244018000" expanded="true" signature="9884:9939" placeholder="UPDATE dispo..." />
+                <marker date="1399244018000" expanded="true" signature="10047:10103" placeholder="UPDATE dispo..." />
+                <marker date="1399244018000" expanded="true" signature="10916:11069" placeholder="SELECT cod_d..pin..." />
+                <marker date="1399244018000" expanded="true" signature="11353:11418" placeholder="SELECT nom_d..dispositivos..." />
+                <marker date="1399244018000" expanded="true" signature="11513:11577" placeholder="SELECT nom_d..dispositivos..." />
+                <marker date="1399244018000" expanded="true" signature="12946:13003" placeholder="DELETE FROM ..." />
+                <marker date="1399244018000" expanded="true" signature="13104:13161" placeholder="DELETE FROM ..." />
+                <marker date="1399244018000" expanded="true" signature="13978:14139" placeholder="UPDATE pin S..." />
+                <marker date="1399244018000" expanded="true" signature="14289:14443" placeholder="UPDATE pin S..." />
+                <marker date="1399244018000" expanded="true" signature="15607:15763" placeholder="INSERT INTO ..." />
+                <marker date="1399244018000" expanded="true" signature="15900:16048" placeholder="INSERT INTO ..." />
+                <marker date="1399244018000" expanded="true" signature="16957:17017" placeholder="SELECT activ..pin..." />
+                <marker date="1399244018000" expanded="true" signature="17116:17176" placeholder="SELECT activ..pin..." />
+                <marker date="1399244018000" expanded="true" signature="17352:17413" placeholder="UPDATE pin S..." />
+                <marker date="1399244018000" expanded="true" signature="17520:17581" placeholder="UPDATE pin S..." />
+                <marker date="1399244018000" expanded="true" signature="17718:17779" placeholder="UPDATE pin S..." />
+                <marker date="1399244018000" expanded="true" signature="17886:17947" placeholder="UPDATE pin S..." />
+                <marker date="1399244018000" expanded="true" signature="18536:18616" placeholder="SELECT fecha..registroinstantaneo..." />
+                <marker date="1399244018000" expanded="true" signature="19631:19700" placeholder="SELECT fecha..registrodiario..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="procesaregistro.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/procesaregistro.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="160" column="9" selection-start="5561" selection-end="5561" vertical-scroll-proportion="0.0" vertical-offset="1530" max-vertical-offset="2610">
+              <folding>
+                <element signature="e#108#122#0" expanded="true" />
+                <marker date="1399245037000" expanded="true" signature="996:1048" placeholder="SELECT * FRO..registrodiario..." />
+                <marker date="1399245037000" expanded="true" signature="1512:1571" placeholder="INSERT INTO ..." />
+                <marker date="1399245037000" expanded="true" signature="1512:1607" placeholder="INSERT INTO ..." />
+                <marker date="1399245037000" expanded="true" signature="1512:1629" placeholder="INSERT INTO ..." />
+                <marker date="1399245037000" expanded="true" signature="1799:1894" placeholder="UPDATE regis..." />
+                <marker date="1399245037000" expanded="true" signature="2048:2428" placeholder="..." />
+                <marker date="1399245037000" expanded="true" signature="2069:2118" placeholder="SELECT fecha..registroinstantaneo..." />
+                <marker date="1399245037000" expanded="true" signature="2352:2426" placeholder="UPDATE regis..." />
+                <marker date="1399245037000" expanded="true" signature="2450:2677" placeholder="..." />
+                <marker date="1399245037000" expanded="true" signature="2463:2509" placeholder="DELETE FROM ..." />
+                <marker date="1399245037000" expanded="true" signature="2474:2507" placeholder="UPDATE regis..." />
+                <marker date="1399245037000" expanded="true" signature="2699:3929" placeholder="..." />
+                <marker date="1399245037000" expanded="true" signature="2713:2801" placeholder="SELECT fecha..registroinstantaneo..." />
+                <marker date="1399245037000" expanded="true" signature="2713:2801" placeholder="SELECT fecha..registroinstantaneo..." />
               </folding>
             </state>
           </provider>
@@ -50,26 +138,31 @@
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
   </component>
+  <component name="Git.Settings">
+    <option name="SYNC_SETTING" value="SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/crea_profile.py" />
         <option value="$PROJECT_DIR$/DBCreaSQLite3.py" />
-        <option value="$PROJECT_DIR$/procesa.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/Arduino YUN/nooxsenseYUN_v1/nooxsenseYUN_v1.ino" />
         <option value="$PROJECT_DIR$/ArduinoUNO_Wifly/nooxsenseFLY_v1/nooxsenseFLY_v1.ino" />
+        <option value="$PROJECT_DIR$/procesa.py" />
         <option value="$PROJECT_DIR$/DBMantenimiento.py" />
+        <option value="$PROJECT_DIR$/procesaregistro.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="10" />
-    <option name="y" value="29" />
+    <option name="x" value="7" />
+    <option name="y" value="22" />
     <option name="width" value="1260" />
     <option name="height" value="760" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -137,12 +230,15 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="options.lastSelected" value="Markdown" />
+    <property name="options.lastSelected" value="settings.github" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
     <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -162,10 +258,31 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="SmartProcessHome" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/DBMantenimiento.py" />
       <option name="PARAMETERS" value="" />
       <RunnerSettings RunnerId="PythonRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="SmartProcessHome" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="TARGET" value="" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="py.test">
@@ -178,6 +295,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="SmartProcessHome" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="CLASS_NAME" value="" />
       <option name="METHOD_NAME" value="" />
@@ -202,6 +320,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="SmartProcessHome" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="CLASS_NAME" value="" />
       <option name="METHOD_NAME" value="" />
@@ -225,6 +344,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="SmartProcessHome" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="PARAMETERS" value="" />
       <method />
@@ -239,6 +359,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="SmartProcessHome" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="CLASS_NAME" value="" />
       <option name="METHOD_NAME" value="" />
@@ -251,6 +372,9 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+      <method />
+    </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -261,6 +385,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="SmartProcessHome" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="CLASS_NAME" value="" />
       <option name="METHOD_NAME" value="" />
@@ -280,6 +405,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="SmartProcessHome" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="CLASS_NAME" value="" />
       <option name="METHOD_NAME" value="" />
@@ -287,6 +413,12 @@
       <option name="TEST_TYPE" value="TEST_SCRIPT" />
       <option name="PATTERN" value="" />
       <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="com.intellij.persistence.run.ConsoleRunConfigurationType" factoryName="Query Language Console">
+      <option name="VM_PARAMETERS" value="" />
+      <option name="USER_CFG_CLASS" />
+      <option name="CONTEXT_PROVIDER" />
       <method />
     </configuration>
     <list size="1">
@@ -325,18 +457,19 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="10" y="29" width="1260" height="760" extended-state="0" />
-    <editor active="true" />
+    <frame x="7" y="22" width="1260" height="760" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2542373" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3464696" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24958949" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26108375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26483357" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32866043" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26323986" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -365,25 +498,210 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/DBMantenimiento.py</url>
-          <line>181</line>
+          <line>218</line>
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/procesaregistro.py</url>
+          <line>20</line>
+          <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ArduinoUNO_Wifly/nooxsenseFLY_v1/nooxsenseFLY_v1.ino">
+    <entry file="file://$PROJECT_DIR$/procesa.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="117" column="10" selection-start="2878" selection-end="2878" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3030">
+        <state line="13" column="1" selection-start="405" selection-end="405" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1230">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/procesa.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="1" selection-start="405" selection-end="405" vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="1230">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DBMantenimiento.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state line="153" column="82" selection-start="8247" selection-end="8247" vertical-scroll-proportion="0.0" vertical-offset="2175" max-vertical-offset="5790">
+          <folding>
+            <element signature="e#81#95#0" expanded="true" />
+            <element signature="e#397#951#0" expanded="false" />
+            <element signature="e#984#4218#0" expanded="false" />
+            <element signature="e#4267#10151#0" expanded="false" />
+            <element signature="e#10183#18096#0" expanded="false" />
+            <marker date="1399244018000" expanded="true" signature="481:545" placeholder="SELECT IP_di..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="611:674" placeholder="SELECT IP_di..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="1615:1703" placeholder="SELECT cod_p..configuracion..." />
+            <marker date="1399244018000" expanded="true" signature="2545:2593" placeholder="DELETE FROM ..." />
+            <marker date="1399244018000" expanded="true" signature="2686:2735" placeholder="DELETE FROM ..." />
+            <marker date="1399244018000" expanded="true" signature="3213:3314" placeholder="UPDATE confi..." />
+            <marker date="1399244018000" expanded="true" signature="3425:3524" placeholder="UPDATE confi..." />
+            <marker date="1399244018000" expanded="true" signature="3956:4005" placeholder="INSERT INTO ..." />
+            <marker date="1399244018000" expanded="true" signature="4110:4155" placeholder="INSERT INTO ..." />
+            <marker date="1399244018000" expanded="true" signature="4890:5007" placeholder="SELECT cod_d..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="6048:6097" placeholder="DELETE FROM ..." />
+            <marker date="1399244018000" expanded="true" signature="6190:6240" placeholder="DELETE FROM ..." />
+            <marker date="1399244018000" expanded="true" signature="6932:7068" placeholder="UPDATE dispo..." />
+            <marker date="1399244018000" expanded="true" signature="7192:7324" placeholder="UPDATE dispo..." />
+            <marker date="1399244018000" expanded="true" signature="7876:7931" placeholder="INSERT INTO ..." />
+            <marker date="1399244018000" expanded="true" signature="8051:8100" placeholder="INSERT INTO ..." />
+            <marker date="1399244018000" expanded="true" signature="8703:8762" placeholder="SELECT * FRO..pin..." />
+            <marker date="1399244018000" expanded="true" signature="8827:8885" placeholder="SELECT * FRO..pin..." />
+            <marker date="1399244018000" expanded="true" signature="9122:9176" placeholder="SELECT activ..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="9276:9331" placeholder="SELECT activ..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="9520:9575" placeholder="UPDATE dispo..." />
+            <marker date="1399244018000" expanded="true" signature="9683:9739" placeholder="UPDATE dispo..." />
+            <marker date="1399244018000" expanded="true" signature="9884:9939" placeholder="UPDATE dispo..." />
+            <marker date="1399244018000" expanded="true" signature="10047:10103" placeholder="UPDATE dispo..." />
+            <marker date="1399244018000" expanded="true" signature="10916:11069" placeholder="SELECT cod_d..pin..." />
+            <marker date="1399244018000" expanded="true" signature="11353:11418" placeholder="SELECT nom_d..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="11513:11577" placeholder="SELECT nom_d..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="12946:13003" placeholder="DELETE FROM ..." />
+            <marker date="1399244018000" expanded="true" signature="13104:13161" placeholder="DELETE FROM ..." />
+            <marker date="1399244018000" expanded="true" signature="13978:14139" placeholder="UPDATE pin S..." />
+            <marker date="1399244018000" expanded="true" signature="14289:14443" placeholder="UPDATE pin S..." />
+            <marker date="1399244018000" expanded="true" signature="15607:15763" placeholder="INSERT INTO ..." />
+            <marker date="1399244018000" expanded="true" signature="15900:16048" placeholder="INSERT INTO ..." />
+            <marker date="1399244018000" expanded="true" signature="16957:17017" placeholder="SELECT activ..pin..." />
+            <marker date="1399244018000" expanded="true" signature="17116:17176" placeholder="SELECT activ..pin..." />
+            <marker date="1399244018000" expanded="true" signature="17352:17413" placeholder="UPDATE pin S..." />
+            <marker date="1399244018000" expanded="true" signature="17520:17581" placeholder="UPDATE pin S..." />
+            <marker date="1399244018000" expanded="true" signature="17718:17779" placeholder="UPDATE pin S..." />
+            <marker date="1399244018000" expanded="true" signature="17886:17947" placeholder="UPDATE pin S..." />
+            <marker date="1399244018000" expanded="true" signature="18536:18616" placeholder="SELECT fecha..registroinstantaneo..." />
+            <marker date="1399244018000" expanded="true" signature="19631:19700" placeholder="SELECT fecha..registrodiario..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="0" selection-start="122" selection-end="122" vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="4860" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/procesa.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="1" selection-start="405" selection-end="405" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1230">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DBMantenimiento.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="153" column="82" selection-start="8247" selection-end="8247" vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="5790">
+          <folding>
+            <element signature="e#81#95#0" expanded="true" />
+            <element signature="e#397#951#0" expanded="false" />
+            <element signature="e#984#4218#0" expanded="false" />
+            <element signature="e#4267#10151#0" expanded="false" />
+            <element signature="e#10183#18096#0" expanded="false" />
+            <marker date="1399244018000" expanded="true" signature="481:545" placeholder="SELECT IP_di..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="611:674" placeholder="SELECT IP_di..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="1615:1703" placeholder="SELECT cod_p..configuracion..." />
+            <marker date="1399244018000" expanded="true" signature="2545:2593" placeholder="DELETE FROM ..." />
+            <marker date="1399244018000" expanded="true" signature="2686:2735" placeholder="DELETE FROM ..." />
+            <marker date="1399244018000" expanded="true" signature="3213:3314" placeholder="UPDATE confi..." />
+            <marker date="1399244018000" expanded="true" signature="3425:3524" placeholder="UPDATE confi..." />
+            <marker date="1399244018000" expanded="true" signature="3956:4005" placeholder="INSERT INTO ..." />
+            <marker date="1399244018000" expanded="true" signature="4110:4155" placeholder="INSERT INTO ..." />
+            <marker date="1399244018000" expanded="true" signature="4890:5007" placeholder="SELECT cod_d..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="6048:6097" placeholder="DELETE FROM ..." />
+            <marker date="1399244018000" expanded="true" signature="6190:6240" placeholder="DELETE FROM ..." />
+            <marker date="1399244018000" expanded="true" signature="6932:7068" placeholder="UPDATE dispo..." />
+            <marker date="1399244018000" expanded="true" signature="7192:7324" placeholder="UPDATE dispo..." />
+            <marker date="1399244018000" expanded="true" signature="7876:7931" placeholder="INSERT INTO ..." />
+            <marker date="1399244018000" expanded="true" signature="8051:8100" placeholder="INSERT INTO ..." />
+            <marker date="1399244018000" expanded="true" signature="8703:8762" placeholder="SELECT * FRO..pin..." />
+            <marker date="1399244018000" expanded="true" signature="8827:8885" placeholder="SELECT * FRO..pin..." />
+            <marker date="1399244018000" expanded="true" signature="9122:9176" placeholder="SELECT activ..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="9276:9331" placeholder="SELECT activ..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="9520:9575" placeholder="UPDATE dispo..." />
+            <marker date="1399244018000" expanded="true" signature="9683:9739" placeholder="UPDATE dispo..." />
+            <marker date="1399244018000" expanded="true" signature="9884:9939" placeholder="UPDATE dispo..." />
+            <marker date="1399244018000" expanded="true" signature="10047:10103" placeholder="UPDATE dispo..." />
+            <marker date="1399244018000" expanded="true" signature="10916:11069" placeholder="SELECT cod_d..pin..." />
+            <marker date="1399244018000" expanded="true" signature="11353:11418" placeholder="SELECT nom_d..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="11513:11577" placeholder="SELECT nom_d..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="12946:13003" placeholder="DELETE FROM ..." />
+            <marker date="1399244018000" expanded="true" signature="13104:13161" placeholder="DELETE FROM ..." />
+            <marker date="1399244018000" expanded="true" signature="13978:14139" placeholder="UPDATE pin S..." />
+            <marker date="1399244018000" expanded="true" signature="14289:14443" placeholder="UPDATE pin S..." />
+            <marker date="1399244018000" expanded="true" signature="15607:15763" placeholder="INSERT INTO ..." />
+            <marker date="1399244018000" expanded="true" signature="15900:16048" placeholder="INSERT INTO ..." />
+            <marker date="1399244018000" expanded="true" signature="16957:17017" placeholder="SELECT activ..pin..." />
+            <marker date="1399244018000" expanded="true" signature="17116:17176" placeholder="SELECT activ..pin..." />
+            <marker date="1399244018000" expanded="true" signature="17352:17413" placeholder="UPDATE pin S..." />
+            <marker date="1399244018000" expanded="true" signature="17520:17581" placeholder="UPDATE pin S..." />
+            <marker date="1399244018000" expanded="true" signature="17718:17779" placeholder="UPDATE pin S..." />
+            <marker date="1399244018000" expanded="true" signature="17886:17947" placeholder="UPDATE pin S..." />
+            <marker date="1399244018000" expanded="true" signature="18536:18616" placeholder="SELECT fecha..registroinstantaneo..." />
+            <marker date="1399244018000" expanded="true" signature="19631:19700" placeholder="SELECT fecha..registrodiario..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ArduinoUNO_Wifly/nooxsenseFLY_v1/nooxsenseFLY_v1.ino">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="117" column="10" selection-start="2878" selection-end="2878" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3030" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DBMantenimiento.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="1" selection-start="135" selection-end="135" vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="5445">
           <folding>
-            <element signature="e#47#61#0" expanded="true" />
+            <element signature="e#81#95#0" expanded="true" />
+            <element signature="e#397#951#0" expanded="false" />
+            <element signature="e#984#4218#0" expanded="false" />
+            <element signature="e#4267#10151#0" expanded="false" />
+            <element signature="e#10183#18096#0" expanded="false" />
+            <marker date="1399244018000" expanded="true" signature="481:545" placeholder="SELECT IP_di..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="611:674" placeholder="SELECT IP_di..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="1615:1703" placeholder="SELECT cod_p..configuracion..." />
+            <marker date="1399244018000" expanded="true" signature="2545:2593" placeholder="DELETE FROM ..." />
+            <marker date="1399244018000" expanded="true" signature="2686:2735" placeholder="DELETE FROM ..." />
+            <marker date="1399244018000" expanded="true" signature="3213:3314" placeholder="UPDATE confi..." />
+            <marker date="1399244018000" expanded="true" signature="3425:3524" placeholder="UPDATE confi..." />
+            <marker date="1399244018000" expanded="true" signature="3956:4005" placeholder="INSERT INTO ..." />
+            <marker date="1399244018000" expanded="true" signature="4110:4155" placeholder="INSERT INTO ..." />
+            <marker date="1399244018000" expanded="true" signature="4890:5007" placeholder="SELECT cod_d..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="6048:6097" placeholder="DELETE FROM ..." />
+            <marker date="1399244018000" expanded="true" signature="6190:6240" placeholder="DELETE FROM ..." />
+            <marker date="1399244018000" expanded="true" signature="6932:7068" placeholder="UPDATE dispo..." />
+            <marker date="1399244018000" expanded="true" signature="7192:7324" placeholder="UPDATE dispo..." />
+            <marker date="1399244018000" expanded="true" signature="7876:7931" placeholder="INSERT INTO ..." />
+            <marker date="1399244018000" expanded="true" signature="8051:8100" placeholder="INSERT INTO ..." />
+            <marker date="1399244018000" expanded="true" signature="8703:8762" placeholder="SELECT * FRO..pin..." />
+            <marker date="1399244018000" expanded="true" signature="8827:8885" placeholder="SELECT * FRO..pin..." />
+            <marker date="1399244018000" expanded="true" signature="9122:9176" placeholder="SELECT activ..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="9276:9331" placeholder="SELECT activ..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="9520:9575" placeholder="UPDATE dispo..." />
+            <marker date="1399244018000" expanded="true" signature="9683:9739" placeholder="UPDATE dispo..." />
+            <marker date="1399244018000" expanded="true" signature="9884:9939" placeholder="UPDATE dispo..." />
+            <marker date="1399244018000" expanded="true" signature="10047:10103" placeholder="UPDATE dispo..." />
+            <marker date="1399244018000" expanded="true" signature="10916:11069" placeholder="SELECT cod_d..pin..." />
+            <marker date="1399244018000" expanded="true" signature="11353:11418" placeholder="SELECT nom_d..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="11513:11577" placeholder="SELECT nom_d..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="12946:13003" placeholder="DELETE FROM ..." />
+            <marker date="1399244018000" expanded="true" signature="13104:13161" placeholder="DELETE FROM ..." />
+            <marker date="1399244018000" expanded="true" signature="13978:14139" placeholder="UPDATE pin S..." />
+            <marker date="1399244018000" expanded="true" signature="14289:14443" placeholder="UPDATE pin S..." />
+            <marker date="1399244018000" expanded="true" signature="15607:15763" placeholder="INSERT INTO ..." />
+            <marker date="1399244018000" expanded="true" signature="15900:16048" placeholder="INSERT INTO ..." />
+            <marker date="1399244018000" expanded="true" signature="16957:17017" placeholder="SELECT activ..pin..." />
+            <marker date="1399244018000" expanded="true" signature="17116:17176" placeholder="SELECT activ..pin..." />
+            <marker date="1399244018000" expanded="true" signature="17352:17413" placeholder="UPDATE pin S..." />
+            <marker date="1399244018000" expanded="true" signature="17520:17581" placeholder="UPDATE pin S..." />
+            <marker date="1399244018000" expanded="true" signature="17718:17779" placeholder="UPDATE pin S..." />
+            <marker date="1399244018000" expanded="true" signature="17886:17947" placeholder="UPDATE pin S..." />
+            <marker date="1399244018000" expanded="true" signature="18536:18616" placeholder="SELECT fecha..registroinstantaneo..." />
+            <marker date="1399244018000" expanded="true" signature="19631:19700" placeholder="SELECT fecha..registrodiario..." />
           </folding>
         </state>
       </provider>
@@ -412,16 +730,59 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="16" selection-start="33" selection-end="33" vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="2580">
-          <folding />
-        </state>
+        <state line="1" column="16" selection-start="33" selection-end="33" vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="2580" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DBMantenimiento.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="1" selection-start="135" selection-end="135" vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="5445">
           <folding>
-            <element signature="e#47#61#0" expanded="true" />
+            <element signature="e#81#95#0" expanded="true" />
+            <element signature="e#397#951#0" expanded="false" />
+            <element signature="e#984#4218#0" expanded="false" />
+            <element signature="e#4267#10151#0" expanded="false" />
+            <element signature="e#10183#18096#0" expanded="false" />
+            <marker date="1399244018000" expanded="true" signature="481:545" placeholder="SELECT IP_di..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="611:674" placeholder="SELECT IP_di..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="1615:1703" placeholder="SELECT cod_p..configuracion..." />
+            <marker date="1399244018000" expanded="true" signature="2545:2593" placeholder="DELETE FROM ..." />
+            <marker date="1399244018000" expanded="true" signature="2686:2735" placeholder="DELETE FROM ..." />
+            <marker date="1399244018000" expanded="true" signature="3213:3314" placeholder="UPDATE confi..." />
+            <marker date="1399244018000" expanded="true" signature="3425:3524" placeholder="UPDATE confi..." />
+            <marker date="1399244018000" expanded="true" signature="3956:4005" placeholder="INSERT INTO ..." />
+            <marker date="1399244018000" expanded="true" signature="4110:4155" placeholder="INSERT INTO ..." />
+            <marker date="1399244018000" expanded="true" signature="4890:5007" placeholder="SELECT cod_d..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="6048:6097" placeholder="DELETE FROM ..." />
+            <marker date="1399244018000" expanded="true" signature="6190:6240" placeholder="DELETE FROM ..." />
+            <marker date="1399244018000" expanded="true" signature="6932:7068" placeholder="UPDATE dispo..." />
+            <marker date="1399244018000" expanded="true" signature="7192:7324" placeholder="UPDATE dispo..." />
+            <marker date="1399244018000" expanded="true" signature="7876:7931" placeholder="INSERT INTO ..." />
+            <marker date="1399244018000" expanded="true" signature="8051:8100" placeholder="INSERT INTO ..." />
+            <marker date="1399244018000" expanded="true" signature="8703:8762" placeholder="SELECT * FRO..pin..." />
+            <marker date="1399244018000" expanded="true" signature="8827:8885" placeholder="SELECT * FRO..pin..." />
+            <marker date="1399244018000" expanded="true" signature="9122:9176" placeholder="SELECT activ..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="9276:9331" placeholder="SELECT activ..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="9520:9575" placeholder="UPDATE dispo..." />
+            <marker date="1399244018000" expanded="true" signature="9683:9739" placeholder="UPDATE dispo..." />
+            <marker date="1399244018000" expanded="true" signature="9884:9939" placeholder="UPDATE dispo..." />
+            <marker date="1399244018000" expanded="true" signature="10047:10103" placeholder="UPDATE dispo..." />
+            <marker date="1399244018000" expanded="true" signature="10916:11069" placeholder="SELECT cod_d..pin..." />
+            <marker date="1399244018000" expanded="true" signature="11353:11418" placeholder="SELECT nom_d..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="11513:11577" placeholder="SELECT nom_d..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="12946:13003" placeholder="DELETE FROM ..." />
+            <marker date="1399244018000" expanded="true" signature="13104:13161" placeholder="DELETE FROM ..." />
+            <marker date="1399244018000" expanded="true" signature="13978:14139" placeholder="UPDATE pin S..." />
+            <marker date="1399244018000" expanded="true" signature="14289:14443" placeholder="UPDATE pin S..." />
+            <marker date="1399244018000" expanded="true" signature="15607:15763" placeholder="INSERT INTO ..." />
+            <marker date="1399244018000" expanded="true" signature="15900:16048" placeholder="INSERT INTO ..." />
+            <marker date="1399244018000" expanded="true" signature="16957:17017" placeholder="SELECT activ..pin..." />
+            <marker date="1399244018000" expanded="true" signature="17116:17176" placeholder="SELECT activ..pin..." />
+            <marker date="1399244018000" expanded="true" signature="17352:17413" placeholder="UPDATE pin S..." />
+            <marker date="1399244018000" expanded="true" signature="17520:17581" placeholder="UPDATE pin S..." />
+            <marker date="1399244018000" expanded="true" signature="17718:17779" placeholder="UPDATE pin S..." />
+            <marker date="1399244018000" expanded="true" signature="17886:17947" placeholder="UPDATE pin S..." />
+            <marker date="1399244018000" expanded="true" signature="18536:18616" placeholder="SELECT fecha..registroinstantaneo..." />
+            <marker date="1399244018000" expanded="true" signature="19631:19700" placeholder="SELECT fecha..registrodiario..." />
           </folding>
         </state>
       </provider>
@@ -450,9 +811,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="165" column="0" selection-start="5647" selection-end="5647" vertical-scroll-proportion="0.0" vertical-offset="2475" max-vertical-offset="2580">
-          <folding />
-        </state>
+        <state line="165" column="0" selection-start="5647" selection-end="5647" vertical-scroll-proportion="0.0" vertical-offset="2475" max-vertical-offset="2580" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/crea_profile.py">
@@ -475,35 +834,139 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="1" max-vertical-offset="2610" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ArduinoUNO_Wifly/nooxsenseFLY_v1/nooxsenseFLY_v1.ino">
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="117" column="10" selection-start="2878" selection-end="2878" vertical-scroll-proportion="0.0" vertical-offset="1755" max-vertical-offset="3030">
+        <state line="8" column="0" selection-start="122" selection-end="122" vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="4860" />
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/424054d3/7f3efc2d-b4d3-4b94-b9d7-6447133bc06f/nooxsense..registroinstantaneo">
+      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
+    <entry file="file://$PROJECT_DIR$/ArduinoUNO_Wifly/nooxsenseFLY_v1/nooxsenseFLY_v1.ino">
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="122" selection-end="122" vertical-scroll-proportion="119.07407" vertical-offset="3335" max-vertical-offset="4860">
+        <state line="117" column="10" selection-start="2878" selection-end="2878" vertical-scroll-proportion="-65.0" vertical-offset="0" max-vertical-offset="3030">
           <folding />
         </state>
       </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
+    </entry>
+    <entry file="dbDummy://dbtable:/424054d3/7f3efc2d-b4d3-4b94-b9d7-6447133bc06f/nooxsense..pin">
+      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
         <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/424054d3/7f3efc2d-b4d3-4b94-b9d7-6447133bc06f/nooxsense..registrodiario">
+      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="90">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/procesa.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="1" selection-start="405" selection-end="405" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="1215">
-          <folding />
+        <state line="73" column="171" selection-start="3867" selection-end="3867" vertical-scroll-proportion="0.0" vertical-offset="839" max-vertical-offset="1455">
+          <folding>
+            <marker date="1399228567000" expanded="true" signature="2095:2187" placeholder="SELECT cod_d..dispositivos..." />
+            <marker date="1399228567000" expanded="true" signature="2545:2640" placeholder="SELECT PIN_n..pin..." />
+            <marker date="1399228567000" expanded="true" signature="3746:3809" placeholder="INSERT INTO ..." />
+            <marker date="1399228567000" expanded="true" signature="4160:4270" placeholder="UPDATE pin S..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/procesaregistro.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="160" column="9" selection-start="5561" selection-end="5561" vertical-scroll-proportion="0.0" vertical-offset="1530" max-vertical-offset="2610">
+          <folding>
+            <element signature="e#108#122#0" expanded="true" />
+            <marker date="1399245037000" expanded="true" signature="996:1048" placeholder="SELECT * FRO..registrodiario..." />
+            <marker date="1399245037000" expanded="true" signature="1512:1571" placeholder="INSERT INTO ..." />
+            <marker date="1399245037000" expanded="true" signature="1512:1607" placeholder="INSERT INTO ..." />
+            <marker date="1399245037000" expanded="true" signature="1512:1629" placeholder="INSERT INTO ..." />
+            <marker date="1399245037000" expanded="true" signature="1799:1894" placeholder="UPDATE regis..." />
+            <marker date="1399245037000" expanded="true" signature="2048:2428" placeholder="..." />
+            <marker date="1399245037000" expanded="true" signature="2069:2118" placeholder="SELECT fecha..registroinstantaneo..." />
+            <marker date="1399245037000" expanded="true" signature="2352:2426" placeholder="UPDATE regis..." />
+            <marker date="1399245037000" expanded="true" signature="2450:2677" placeholder="..." />
+            <marker date="1399245037000" expanded="true" signature="2463:2509" placeholder="DELETE FROM ..." />
+            <marker date="1399245037000" expanded="true" signature="2474:2507" placeholder="UPDATE regis..." />
+            <marker date="1399245037000" expanded="true" signature="2699:3929" placeholder="..." />
+            <marker date="1399245037000" expanded="true" signature="2713:2801" placeholder="SELECT fecha..registroinstantaneo..." />
+            <marker date="1399245037000" expanded="true" signature="2713:2801" placeholder="SELECT fecha..registroinstantaneo..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DBMantenimiento.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="183" column="30" selection-start="9952" selection-end="9952" vertical-scroll-proportion="0.64891845" vertical-offset="2355" max-vertical-offset="5505">
+        <state line="338" column="0" selection-start="18947" selection-end="18947" vertical-scroll-proportion="0.7237937" vertical-offset="240" max-vertical-offset="2550">
           <folding>
-            <element signature="e#47#61#0" expanded="true" />
+            <element signature="e#81#95#0" expanded="true" />
+            <element signature="e#397#951#0" expanded="false" />
+            <element signature="e#984#4218#0" expanded="false" />
+            <element signature="e#4267#10151#0" expanded="false" />
+            <element signature="e#10183#18096#0" expanded="false" />
+            <marker date="1399244018000" expanded="true" signature="481:545" placeholder="SELECT IP_di..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="611:674" placeholder="SELECT IP_di..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="1615:1703" placeholder="SELECT cod_p..configuracion..." />
+            <marker date="1399244018000" expanded="true" signature="2545:2593" placeholder="DELETE FROM ..." />
+            <marker date="1399244018000" expanded="true" signature="2686:2735" placeholder="DELETE FROM ..." />
+            <marker date="1399244018000" expanded="true" signature="3213:3314" placeholder="UPDATE confi..." />
+            <marker date="1399244018000" expanded="true" signature="3425:3524" placeholder="UPDATE confi..." />
+            <marker date="1399244018000" expanded="true" signature="3956:4005" placeholder="INSERT INTO ..." />
+            <marker date="1399244018000" expanded="true" signature="4110:4155" placeholder="INSERT INTO ..." />
+            <marker date="1399244018000" expanded="true" signature="4890:5007" placeholder="SELECT cod_d..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="6048:6097" placeholder="DELETE FROM ..." />
+            <marker date="1399244018000" expanded="true" signature="6190:6240" placeholder="DELETE FROM ..." />
+            <marker date="1399244018000" expanded="true" signature="6932:7068" placeholder="UPDATE dispo..." />
+            <marker date="1399244018000" expanded="true" signature="7192:7324" placeholder="UPDATE dispo..." />
+            <marker date="1399244018000" expanded="true" signature="7876:7931" placeholder="INSERT INTO ..." />
+            <marker date="1399244018000" expanded="true" signature="8051:8100" placeholder="INSERT INTO ..." />
+            <marker date="1399244018000" expanded="true" signature="8703:8762" placeholder="SELECT * FRO..pin..." />
+            <marker date="1399244018000" expanded="true" signature="8827:8885" placeholder="SELECT * FRO..pin..." />
+            <marker date="1399244018000" expanded="true" signature="9122:9176" placeholder="SELECT activ..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="9276:9331" placeholder="SELECT activ..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="9520:9575" placeholder="UPDATE dispo..." />
+            <marker date="1399244018000" expanded="true" signature="9683:9739" placeholder="UPDATE dispo..." />
+            <marker date="1399244018000" expanded="true" signature="9884:9939" placeholder="UPDATE dispo..." />
+            <marker date="1399244018000" expanded="true" signature="10047:10103" placeholder="UPDATE dispo..." />
+            <marker date="1399244018000" expanded="true" signature="10916:11069" placeholder="SELECT cod_d..pin..." />
+            <marker date="1399244018000" expanded="true" signature="11353:11418" placeholder="SELECT nom_d..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="11513:11577" placeholder="SELECT nom_d..dispositivos..." />
+            <marker date="1399244018000" expanded="true" signature="12946:13003" placeholder="DELETE FROM ..." />
+            <marker date="1399244018000" expanded="true" signature="13104:13161" placeholder="DELETE FROM ..." />
+            <marker date="1399244018000" expanded="true" signature="13978:14139" placeholder="UPDATE pin S..." />
+            <marker date="1399244018000" expanded="true" signature="14289:14443" placeholder="UPDATE pin S..." />
+            <marker date="1399244018000" expanded="true" signature="15607:15763" placeholder="INSERT INTO ..." />
+            <marker date="1399244018000" expanded="true" signature="15900:16048" placeholder="INSERT INTO ..." />
+            <marker date="1399244018000" expanded="true" signature="16957:17017" placeholder="SELECT activ..pin..." />
+            <marker date="1399244018000" expanded="true" signature="17116:17176" placeholder="SELECT activ..pin..." />
+            <marker date="1399244018000" expanded="true" signature="17352:17413" placeholder="UPDATE pin S..." />
+            <marker date="1399244018000" expanded="true" signature="17520:17581" placeholder="UPDATE pin S..." />
+            <marker date="1399244018000" expanded="true" signature="17718:17779" placeholder="UPDATE pin S..." />
+            <marker date="1399244018000" expanded="true" signature="17886:17947" placeholder="UPDATE pin S..." />
+            <marker date="1399244018000" expanded="true" signature="18536:18616" placeholder="SELECT fecha..registroinstantaneo..." />
+            <marker date="1399244018000" expanded="true" signature="19631:19700" placeholder="SELECT fecha..registrodiario..." />
           </folding>
         </state>
       </provider>
