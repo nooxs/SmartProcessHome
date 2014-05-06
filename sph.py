@@ -20,22 +20,23 @@ config = profilePython('/etc/config/nooxs.config')
 ###############################################################
 # FUNCIONES ###################################################
 ###############################################################
-
-###############################################################
-# PRINCIPAL ###################################################
-###############################################################
-try:
-    sHost = config.profile('MySQL','host')
-    sUser = config.profile('MySQL','USER')
-    sPass = config.profile('MySQL','PASS')
-    sDB = config.profile('MySQL','DB')
-    queDB = config.profile('DB', 'db')
-    sArgDB = config.profile('DB','Argumentos')
-    db=MySQLdb.connect(host=sHost,user=sUser,passwd=sPass,db=sDB)
-    cursor=db.cursor()
-
+def fProgramador(queDB):
     bSalir = False
+    while not bSalir:
+        os.system('clear')
+        print 'NOOXS - SmartProcessHome'
+        print '*** Sensores / Actuadores de la red ***'
+        print "\033[1;33m- nota V1: solo para pines digitales, Output, Activos-\033[1;m"
+        print
+        print
 
+        iOp = raw_input('(0) Volver - Opción: ')
+        if iOp==str(0): # cambio el valor de salir a verdadero para salir del WHILE
+            bSalir=True
+            db.commit()
+
+def fManual(queDB):
+    bSalir = False
     while not bSalir:
         os.system('clear')
         print 'NOOXS - SmartProcessHome'
@@ -144,8 +145,52 @@ try:
                     print 'Error. Datos incorrectos. Pulse una tecla...'
                     iOp=raw_input()
                 break
+
+
+
+###############################################################
+# PRINCIPAL ###################################################
+###############################################################
+try:
+    sHost = config.profile('MySQL','host')
+    sUser = config.profile('MySQL','USER')
+    sPass = config.profile('MySQL','PASS')
+    sDB = config.profile('MySQL','DB')
+    queDB = config.profile('DB', 'db')
+    sArgDB = config.profile('DB','Argumentos')
+    db=MySQLdb.connect(host=sHost,user=sUser,passwd=sPass,db=sDB)
+    cursor=db.cursor()
+
+    bSalir = False
+    while not bSalir:
+        os.system('clear')
+        print 'NOOXS - Actuadores / Sensores'
+        print sDB, 'en ',sHost
+
+        print
+        print 'Menu Principal'
+        print
+        print '1 - Manual'
+        print '2 - Programador'
+        print '0 - Salir'
+        print
+        op = raw_input('Opcion: ')
+        print
+        if op == str(1):
+            fManual(queDB)
+        if op == str(2):
+            fProgramador(queDB)
+        if op==str(0): # cambio el valor de salir a verdadero
+            bSalir=True
+
+        os.system('clear')
+        print
+    # esta linea permite que el programa no termine hasta que se de Enter
     print 'NOOXS'
-    print ('Fin de programa SmartProcessHome.')
+    print ('Fin de programa Actuadores / Sensores.')
+
+
+#----------------------------------------------
 
 
 except db.Error, e:
