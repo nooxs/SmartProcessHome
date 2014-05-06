@@ -15,14 +15,21 @@ config = profilePython('/etc/config/nooxs.config')
 
 
 # ----------------------------------FUNCIONES ------------------------------
+def CreaPIN(iDisp,sPIN):
+    sNombre = "PIN "+sPIN
+    sTipo = "D"
+    sMode = "I"
+    dFecha = datetime.datetime.today()
+    sSQL = "INSERT INTO pin VALUES("+sArgDB+", "+sArgDB+", "+sArgDB+",0,0, "+sArgDB+",0,"+sArgDB+",0, "+sArgDB+");"
+    cursor.execute(sSQL,(iDisp, sPIN, sTipo, sNombre,dFecha,sMode))
+    print 'creado PIN ',sPIN
+    db.commit()
 
 def fMode (queDB, iCodigo, iMode, iPIN):
 
     # recoger el nombre del dispositivo.
-    if queDB == "M":
-        cursor.execute("""SELECT IP_dispositivo FROM dispositivos WHERE cod_dispositivo = %s""",(iCodigo))
-    elif queDB == "S":
-        cursor.execute("""SELECT IP_dispositivo FROM dispositivos WHERE cod_dispositivo=?""",(iCodigo))
+    sSQL="SELECT IP_dispositivo FROM dispositivos WHERE cod_dispositivo = "+sArgDB+";"
+    cursor.execute(sSQL,(iCodigo))
     aUnaFila = cursor.fetchone()
 
     if iMode == "I":
@@ -61,10 +68,8 @@ def fConfiguracion(queDB):
             iRegistro = raw_input('Numero de registro a borrar: ')
             sConfirmacion = raw_input('¿estás seguro (s/n)? :')
             if sConfirmacion == "s" or sConfirmacion == "S":
-                if queDB == "M":
-                    cursor.execute("""DELETE FROM configuracion WHERE cod_parametro = %s""", (iRegistro))
-                elif queDB == "S":
-                    cursor.execute("""DELETE FROM configuracion WHERE cod_parametro = ?""", (iRegistro))
+                sSQL="DELETE FROM configuracion WHERE cod_parametro ="+sArgDB+";"
+                cursor.execute(sSQL,(iRegistro))
                 db.commit()
                 
         elif iOp == str(3): # Modificar Registro
@@ -74,33 +79,20 @@ def fConfiguracion(queDB):
             sNombre = raw_input('Nombre parametro : ')
             sValor = raw_input('Valor : ')
             sNotas = raw_input('Notas : ')
-            if queDB == "M":
-                cursor.execute("""UPDATE configuracion SET nom_parametro=%s,valor_parametro=%s, notas_parametro=%s WHERE cod_parametro=%s""",(sNombre, sValor, sNotas, iCodigo))
-            elif queDB == "S":    
-                cursor.execute("""UPDATE configuracion SET nom_parametro=?,valor_parametro=?, notas_parametro=? WHERE cod_parametro=?""",(sNombre, sValor, sNotas, iCodigo))
+            sSQL="UPDATE configuracion SET nom_parametro="+sArgDB+",valor_parametro="+sArgDB+", notas_parametro="+sArgDB+" WHERE cod_parametro="+sArgDB+" ;"
+            cursor.execute(sSQL,(sNombre, sValor, sNotas, iCodigo))
             db.commit()
+
         elif iOp == str(1): # Añadir registro
             print '*** FUNCIÓN : Añadir Registro ***'
             iCodigo = raw_input('Codigo Parametro -integer-: ')
             sNombre = raw_input('Nombre parametro : ')
             sValor = raw_input('Valor : ')
             sNotas = raw_input('Notas : ')
-            if queDB == "M":
-                cursor.execute("""INSERT INTO configuracion VALUES (%s, %s, %s, %s)""",(iCodigo, sNombre, sValor, sNotas))
-            elif queDB == "S":
-                cursor.execute("""INSERT INTO configuracion VALUES (?, ?, ?, ?)""",(iCodigo, sNombre, sValor, sNotas))
+            sSQL="INSERT INTO configuracion VALUES ("+sArgDB+", "+sArgDB+", "+sArgDB+", "+sArgDB+")"
+            cursor.execute(sSQL,(iCodigo, sNombre, sValor, sNotas))
             db.commit()
-            
 
-def CreaPIN(iDisp,sPIN):
-    sNombre = "PIN "+sPIN
-    sTipo = "D"
-    sMode = "I"
-    dFecha = datetime.datetime.today()
-    sSQL = "INSERT INTO pin VALUES("+sArgDB+", "+sArgDB+", "+sArgDB+",0,0, "+sArgDB+",0,"+sArgDB+",0, "+sArgDB+");"
-    cursor.execute(sSQL,(iDisp, sPIN, sTipo, sNombre,dFecha,sMode))
-    print 'creado PIN ',sPIN
-    db.commit()
 
 def fDispositivos(queDB):
     bSalir = False
@@ -136,10 +128,8 @@ def fDispositivos(queDB):
             sConfirmacion = raw_input('¿estás seguro (s/n)? :')
             if sConfirmacion == "s" or sConfirmacion == "S":
                 # antes de borrar, confirmar que no está activo. Si está activo, no se puede borrar. Primero hay que desactivarlo
-                if queDB == "M":
-                    cursor.execute("""DELETE FROM dispositivos WHERE cod_dispositivo = %s""", (iRegistro))
-                elif queDB == "S":
-                    cursor.execute("""DELETE FROM dispositivos WHERE cod_dispositivo = ?""", (iRegistro))
+                sSQL="DELETE FROM dispositivos WHERE cod_dispositivo = "+sArgDB+";"
+                cursor.execute(sSQL, (iRegistro))
                 db.commit()
                 
         elif iOp == str(3): # Modificar Registro
@@ -152,11 +142,8 @@ def fDispositivos(queDB):
             iActivo = raw_input('Activo (1 Activo , 0 No Activo) : ')
 
             # si cambia el estado a desactivo, comprobar primero si alguno de los pines está HIGH. Si alguno está HIGH no se puede desactivar
-
-            if queDB == "M":
-                cursor.execute("""UPDATE dispositivos SET nom_dispositivo=%s,MAC_dispositivo=%s, IP_dispositivo=%s, clave_dispositivo=%s, activo=%s WHERE cod_dispositivo=%s""",(sNombre, sMAC, sIP, sClave, iActivo,iRegistro))
-            elif queDB == "S":    
-                cursor.execute("""UPDATE dispositivos SET nom_dispositivo=?,MAC_dispositivo=?, IP_dispositivo=?, clave_dispositivo=?, activo=? WHERE cod_dispositivo=?""",(sNombre, sMAC, sIP, sClave, iActivo,iRegistro))
+            sSQL="UPDATE dispositivos SET nom_dispositivo="+sArgDB+",MAC_dispositivo="+sArgDB+", IP_dispositivo="+sArgDB+", clave_dispositivo="+sArgDB+", activo="+sArgDB+" WHERE cod_dispositivo="+sArgDB+";"
+            cursor.execute(sSQL,(sNombre, sMAC, sIP, sClave, iActivo,iRegistro))
             db.commit()
 
         elif iOp == str(1): # Añadir registro
@@ -181,30 +168,21 @@ def fDispositivos(queDB):
             if sConfirmacion == "s" or sConfirmacion == "S":
 
                 # si cambia el estado a desactivo, comprobar primero si alguno de los pines está activo. Si alguno está activo no se puede desactivar
-                if queDB == "M":
-                    sSQL = "SELECT * FROM pin WHERE cod_dispositivo = %s AND activo = 1"
-                elif queDB == "S":
-                    sSQL = "SELECT * FROM pin WHERE cod_dispositivo = ? AND activo = 1"
+                sSQL = "SELECT * FROM pin WHERE cod_dispositivo = "+sArgDB+" AND activo = 1;"
 
                 if cursor.execute(sSQL,(iRegistro)) == 0:   # no hay pines activos
 
                     # comprobar si estaba activo o desactivo y cambiar
-                    if queDB == "M":
-                        cursor.execute("""SELECT activo FROM dispositivos WHERE cod_dispositivo=%s""",(iRegistro))
-                    elif queDB == "S":
-                        cursor.execute("""SELECT activo FROM dispositivos WHERE cod_dispositivo=?""",(iRegistro))
+                    sSQL="SELECT activo FROM dispositivos WHERE cod_dispositivo="+sArgDB+";"
+                    cursor.execute(sSQL,(iRegistro))
 
                     aFilas=cursor.fetchone()
                     if aFilas[0] == 1:
-                        if queDB == "M":
-                            cursor.execute("""UPDATE dispositivos SET activo=0 WHERE cod_dispositivo=%s""",(iRegistro))
-                        elif queDB == "S":
-                            cursor.execute("""UPDATE dispositivos SET activo=0 WHERE cod_dispositivo=?""",(iRegistro))
+                        sSQL="UPDATE dispositivos SET activo=0 WHERE cod_dispositivo="+sArgDB+";"
+                        cursor.execute(sSQL,(iRegistro))
                     elif aFilas[0] == 0:
-                        if queDB == "M":
-                            cursor.execute("""UPDATE dispositivos SET activo=1 WHERE cod_dispositivo=%s""",(iRegistro))
-                        elif queDB == "S":
-                            cursor.execute("""UPDATE dispositivos SET activo=1 WHERE cod_dispositivo=?""",(iRegistro))
+                        sSQL="UPDATE dispositivos SET activo=1 WHERE cod_dispositivo="+sArgDB+";"
+                        cursor.execute(sSQL,(iRegistro))
                     db.commit()
     
 def fSensores(queDB):
@@ -226,10 +204,8 @@ def fSensores(queDB):
         for aRegistro in aFilas:
             if aRegistro[0] != iAnterior:
                 # recoger el nombre del dispositivo.
-                if queDB == "M":
-                    cursor.execute("""SELECT nom_dispositivo FROM dispositivos WHERE cod_dispositivo = %s""",(aRegistro[0]))
-                elif queDB == "S":
-                    cursor.execute("""SELECT nom_dispositivo FROM dispositivos WHERE cod_dispositivo=?""",(aRegistro[0]))
+                sSQL="SELECT nom_dispositivo FROM dispositivos WHERE cod_dispositivo = "+sArgDB+";"
+                cursor.execute(sSQL,(aRegistro[0]))
                 aUnaFila = cursor.fetchone()
                 print
                 print aUnaFila[0]
@@ -317,10 +293,8 @@ def fSensores(queDB):
                 iHasta = 0
                 iMode = "I"
             iActivo = 0
-            if queDB == "M":
-                cursor.execute("""INSERT INTO pin (cod_dispositivo, PIN_num, PIN_nombre, PIN_tipo, PIN_valor_desde, PIN_valor_hasta, activo, PIN_mode) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)""",(iCodigo, iPIN, sNombre, sTipo, iDesde, iHasta, iActivo, iMode))
-            elif queDB == "S":   
-                cursor.execute("""INSERT INTO pin (cod_dispositivo, PIN_num, PIN_nombre, PIN_tipo, PIN_valor_desde, PIN_valor_hasta, activo, PIN_mode) VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",(iCodigo, iPIN, sNombre, sTipo, iDesde, iHasta, iActivo, iMode))
+            sSQL="INSERT INTO pin (cod_dispositivo, PIN_num, PIN_nombre, PIN_tipo, PIN_valor_desde, PIN_valor_hasta, activo, PIN_mode) VALUES ("+sArgDB+", "+sArgDB+", "+sArgDB+", "+sArgDB+", "+sArgDB+", "+sArgDB+", "+sArgDB+", "+sArgDB+";"
+            cursor.execute(sSQL,(iCodigo, iPIN, sNombre, sTipo, iDesde, iHasta, iActivo, iMode))
             db.commit()
 
             # poner el pin en mode PIN_mode
