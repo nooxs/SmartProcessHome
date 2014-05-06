@@ -40,9 +40,24 @@ en /etc/config
 conexión en remoto o en local
 * opciones:
 	* Configuración. Definición de diferentes parámetros de configuración. He mantenido esta opciónpara nuevas versiones, pues para esta primera versión, los parámetros de configuración se recogen el fichero nooxs.config en /etc/config/ en cada SAS. Por lo tanto no aplica en esta versión.
-	* Dispositivos. Mantenimiento de los diferentes SAS que componen la red. Hay que dar de alta todos las placas Arduino que componen la red. Se puede activar o desactivar un SAS. Activar un dispositivo significa que el mismo, sus Pines activos, van a generar información en la base de datos cada minuto (estado). Si desaxtivamos un SAS, el mismo sigue dado de alta pero no genera registro de actividad ni se puede actuar sobre sus pines.
-	* Sensores/Actuadores. Mantenimineto de los diferentes pines de un SAS en particular. Se activarán los pines que tengan conectado un sensor o actuador. Se pueden crear los pines asignánoles un tipo (Digital o Analógico) y un modo (Input/Output). Al asignar un modo a un PIN el sistema lo configura automáticamente en ese modo en la placa arduino a través de un WebService (curl). Controla que no se pueda borrar un registro si el PIN está HIGH o está activo.
+	
+	* Dispositivos. Mantenimiento de los diferentes SAS que componen la red. Hay que dar de alta todos las placas Arduino que componen la red. Se puede activar o desactivar un SAS. Activar un dispositivo significa que el mismo, sus Pines activos, van a generar información en la base de datos cada minuto (estado). Si desactivamos un SAS, el mismo sigue dado de alta pero no genera registro de actividad ni se puede actuar sobre sus pines. Al crear un SAS nuevo, automáticamnete se crean en la tabla de Sensores, los 13 Pines digitales (0-13).
+	
+			No permite borrar un PIn activo.
+			En modififcar, si pretendemos cambiar el estado, si está High no lo permite
+			Activar/desactivar: comprueba si alguno de los pines está high
+		
+	
+	* Sensores/Actuadores. Mantenimineto de los diferentes pines de un SAS en particular. Se activarán los pines que tengan conectado un sensor o actuador.  Controla que no se pueda borrar un registro si el PIN está HIGH o está activo.
+	
+			Al querer borrar un PIN comprueba primero si está activo o está HIGH. Si es así, no permite borrarlo. Primero tendremos que ponerlo en LOW en la aplicación sph.py y luego ponerlo en no activo.
+			En modificar registro, solo permite modificar los campos de información, nunca los campos de estado.
+			Al añadir un PIN digital, siempre se añade en modo INPUT.
+			En activar / desactivar controla si el PIN está HIGH en cuyo caso no deja cambiar el estado. Siempre que activo/desactivo un PIN lo ponemos en modo INPUT (modo original)
+			
+	
 	* Registro Instantaneo. En cada SAS se genera un registro cada minuto del estado de los pines activos de ese SAS en particular.
+	
 	* Registro Diario. Cada día, a través de la aplicación procesaregistro.py (activada en el cron del SC) se sumarizan los datos del dia de cada pin y se incluyen en un registro diario de cada pin. Esta es la información que s epuede consultar en esta opción.
 	
 	  	
@@ -109,7 +124,13 @@ Desde el interfaz web se podrá forzar la ejecución de un evento concreto hacie
 
 A falta del interface web, se ha desarrollado esta aplicación python para el manejo de los pines digitales en modo Output (en próximas versiones se incluirán el resto de pines).
 Nos muestra el listado de dispositivos conectados en la red y los pines activos de cada dispositivo.
-Podremos mandar HIGH o LOW a un pin en concreto.
+Podremos mandar HIGH o LOW a un pin en concreto. Al asignar un modo a un PIN el sistema lo configura automáticamente en ese modo en la placa arduino a través de un WebService (curl).
+
+Código de colores:
+
+1. PIN en color rojo: PIN en modo INPUT
+2. PIN en color amarillo: PIN en modo OUTPUT valor LOW
+3. PIN en color verde: PIN en modo OUTPUT con valor HIGH  		
 
 **crontab:**
 

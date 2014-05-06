@@ -332,7 +332,7 @@ def fSensores(queDB):
         elif iOp == str(4): #Activar / Desactivar
             print '*** FUNCIÓN : Activar / Desactivar ***'
             print 'Esta función solo se encargar de poner el PIN en modo ACTIVO para permitir registrar su actividad.'
-            print'Acontinuación debe de poner el modo en la aplicación sph.'
+            print'A continuación debe de poner el modo en la aplicación sph.'
             print
             iCodigo = raw_input('Código de Dispositivo: ')
             iPIN = raw_input('Numero de PIN a Activar / Desactivar: ')
