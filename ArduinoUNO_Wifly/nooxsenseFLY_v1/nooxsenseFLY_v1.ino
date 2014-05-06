@@ -46,12 +46,12 @@ void process(WiFlyClient client) {
   Serial.println(sLinea);
   int iHasta = sLinea.indexOf("HTTP");
   sLinea = sLinea.substring(13,iHasta-1);
-  //Serial.println("linea: "+sLinea);
+  Serial.println("linea: "+sLinea);
   iHasta = sLinea.indexOf("/");
   String command = sLinea.substring(0,iHasta);
-  //Serial.println("comando: "+command);
+  Serial.println("comando: "+command);
   sLinea = sLinea.substring(iHasta+1,sLinea.length());
-  //Serial.println("resto: "+sLinea); 
+  Serial.println("resto: "+sLinea); 
 
   // es un comando 'digital??
   if (command == "digital") {
@@ -83,12 +83,18 @@ void digitalCommand(WiFlyClient client, String sLinea) {
   String sPin = sLinea.substring(0,sLinea.indexOf("/"));
   pin = sPin.toInt();
   Serial.println("----");
+  //Serial.print("sPin : ");
+  //Serial.println(sPin);
+  Serial.print("PIN ->");
   Serial.println(pin);
-  Serial.println(bWrite);
+  //Serial.println("-");
+  //Serial.print("bWrite: ");
+  //Serial.println(bWrite);
   
   if (bWrite) {
     String sValor = sLinea.substring(sLinea.indexOf("/")+1,sLinea.length());
     value = sValor.toInt();
+    Serial.print("valor a escribir: ");
     Serial.println(value);
     digitalWrite(pin, value);
   } 

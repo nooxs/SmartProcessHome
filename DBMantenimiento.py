@@ -275,7 +275,8 @@ def fSensores(queDB):
             iRegistro = raw_input('Código de Dispositivo: ')
             iPIN = raw_input('PIN: ')
             sNombre = raw_input('Nombre PIN : ')
-            sTipo = raw_input('Tipo ([A]nalógico o [D]igital : ')
+            #sTipo = raw_input('Tipo ([A]nalógico o [D]igital : ')
+            sTipo = "D"
             if sTipo == "A":
                 iDesde = raw_input('Valor Desde: ')
                 iHasta = raw_input('Valor Hasta: ')
@@ -283,7 +284,7 @@ def fSensores(queDB):
             else:
                 iDesde=0
                 iHasta=0
-                iMode = raw_input('Modo [I]nput o [O]utput : ')
+                #iMode = raw_input('Modo [I]nput o [O]utput : ')
             iActivo = 0
 
             # comprobar si está HIGH. Si está HIHG no se puede modificar
@@ -295,11 +296,11 @@ def fSensores(queDB):
                 cursor.execute(sSQL,(iRegistro, iPIN, sNombre, sTipo, iDesde, iHasta,iRegistro, iPIN))
                 db.commit()
 
-                # poner el pin en mode PIN_mode
-                if sTipo == "D" and (iMode == "I" or iMode == "O"):
-                    fMode(queDB, iRegistro, iMode, iPIN)
-                else:
-                    print ("Modo incorrecto, debe de ser O para Output o I para Input. Solo se admiten esos valores. Vuelva a intentarlo.")
+                # poner el pin en mode PIN_mode. ELIMINADO. Desde aqui no se puede modificar el modo de un pin digital
+                #if sTipo == "D" and (iMode == "I" or iMode == "O"):
+                #    fMode(queDB, iRegistro, iMode, iPIN)
+                #else:
+                #    print ("Modo incorrecto, debe de ser O para Output o I para Input. Solo se admiten esos valores. Vuelva a intentarlo.")
 
         elif iOp == str(1): # Añadir registro
             print '*** FUNCIÓN : Añadir Registro ***'
@@ -314,7 +315,7 @@ def fSensores(queDB):
             else:
                 iDesde = 0
                 iHasta = 0
-                iMode = raw_input('Modo [I]nput o [O]utput : ')
+                iMode = "I"
             iActivo = 0
             if queDB == "M":
                 cursor.execute("""INSERT INTO pin (cod_dispositivo, PIN_num, PIN_nombre, PIN_tipo, PIN_valor_desde, PIN_valor_hasta, activo, PIN_mode) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)""",(iCodigo, iPIN, sNombre, sTipo, iDesde, iHasta, iActivo, iMode))
@@ -330,6 +331,9 @@ def fSensores(queDB):
 
         elif iOp == str(4): #Activar / Desactivar
             print '*** FUNCIÓN : Activar / Desactivar ***'
+            print 'Esta función solo se encargar de poner el PIN en modo ACTIVO para permitir registrar su actividad.'
+            print'Acontinuación debe de poner el modo en la aplicación sph.'
+            print
             iCodigo = raw_input('Código de Dispositivo: ')
             iPIN = raw_input('Numero de PIN a Activar / Desactivar: ')
 
@@ -348,11 +352,13 @@ def fSensores(queDB):
                     if aFilas[0] == 1:
                         sSQL = 'UPDATE pin SET activo=0 WHERE cod_dispositivo=' + sArgDB + ' AND PIN_num=' + sArgDB + ';'
                         cursor.execute(sSQL,(iCodigo, iPIN))
-                    elif aFilas[0] == 0 and aFilas[1] == "D" and aFilas[2] == "O":
+                    elif aFilas[0] == 0 and aFilas[1] == "D":
                         sSQL = 'UPDATE pin SET activo=1 WHERE cod_dispositivo=' + sArgDB + ' AND PIN_num=' + sArgDB + ';'
                         cursor.execute(sSQL,(iCodigo, iPIN))
                         # poner el mode a output
-                        fMode(queDB, iCodigo, "O", iPIN)
+
+                    # siempre que activo o desactivo un pin lo pongo en modo INPUT
+                    fMode(queDB, iCodigo, "I", iPIN)
 
                     db.commit()
 
