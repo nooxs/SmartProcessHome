@@ -293,7 +293,7 @@ def fSensores(queDB):
                 iHasta = 0
                 iMode = "I"
             iActivo = 0
-            sSQL="INSERT INTO pin (cod_dispositivo, PIN_num, PIN_nombre, PIN_tipo, PIN_valor_desde, PIN_valor_hasta, activo, PIN_mode) VALUES ("+sArgDB+", "+sArgDB+", "+sArgDB+", "+sArgDB+", "+sArgDB+", "+sArgDB+", "+sArgDB+", "+sArgDB+";"
+            sSQL="INSERT INTO pin (cod_dispositivo, PIN_num, PIN_nombre, PIN_tipo, PIN_valor_desde, PIN_valor_hasta, activo, PIN_mode,valor_actual) VALUES ("+sArgDB+", "+sArgDB+", "+sArgDB+", "+sArgDB+", "+sArgDB+", "+sArgDB+", "+sArgDB+", "+sArgDB+",0);"
             cursor.execute(sSQL,(iCodigo, iPIN, sNombre, sTipo, iDesde, iHasta, iActivo, iMode))
             db.commit()
 
