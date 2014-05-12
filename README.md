@@ -12,7 +12,14 @@ SmartProcessHome
  1. Un sistema de control (SC) compuesto de una placa Raspberry PI. En el SC existen varias aplicaciones para el control de la base de datos y los procesos. 
  
  2. Diferentes sistemas de actuadores / Sensores (SAS) que pueden ser Arduino UNO con Wifly Shield o Arduino YUN. Es necesario que los sistemas Actuadores tengan conexión a red para poder interactuar con el SC.
+***
+## Control de versiones
 
+####12/5/2014
+
+* Nueva aplicación: recupera.py para recuperar la integridad de los pines ante una caida de alimentación. SOLO PARA SISTEMAS basados en Arduino UNO + WIFLY. No es necesario para Arduino YUN ya que estos recuperan el estado de los pines a través de la librería Bridge (clase Bridge.begin() al principio del sketch).
+* Nueva opción en DBMantenimiento.py: Estadística Diaria
+* 
 ***
 ##Sistema de control (controlsystem)
 * Raspberry Pi con BerriBoot
@@ -59,6 +66,7 @@ conexión en remoto o en local
 	* Registro Instantaneo. En cada SAS se genera un registro cada minuto del estado de los pines activos de ese SAS en particular.
 	
 	* Registro Diario. Cada día, a través de la aplicación procesaregistro.py (activada en el cron del SC) se sumarizan los datos del dia de cada pin y se incluyen en un registro diario de cada pin. Esta es la información que s epuede consultar en esta opción.
+	* Estadísitica Diaria. No muestra el total de minutos al dia que el PIN ha estado HIGH y/o LOW.
 	
 	  	
 
@@ -74,6 +82,10 @@ En el caso de los Arduino YUN, esta aplicacións e encuentra en la parte LININO 
 
 Esta aplicación se encarga de sumarizar los registros de la tabla registroinstantaneo en un solo registro de registrodiario (un registro por cada día, pin activo). or ahora solo lo realiza para los pines DIGITALES de modo Output.
 
+**recupera.py**
+
+Esta aplicación el llamada al inicio del sketch de la placa Arduino UNO + Wifly para recuperar el estado de los pines (modo y valor) ante una falta de alimentación.
+Recorre la base de datos y busca los pines ACTIVOS de la placa que lo lanza y vuelve a poner los modos (INPUT y/o OUTPUT) y les aplica el valor (HIGH o LOW) anterior a la caida de alimentación.
 
 **crea_profile.py**
 

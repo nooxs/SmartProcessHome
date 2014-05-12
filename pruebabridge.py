@@ -9,16 +9,14 @@ from bridgeclient import BridgeClient as bridgeclient
 
 cliente = bridgeclient()
 
-mensaje = cliente.get('Digital_8')
-print mensaje
-if mensaje == 1:
-    nuevo = cliente.put("Digital_8","0")
-elif mensaje == 0:
-    nuevo = cliente.put("Digital_8","1")
-
-mensaje = cliente.get("Digital_13")
-print mensaje
-if mensaje == 1:
-    nuevo = cliente.put("Digital_13","0")
-elif mensaje == 0:
-    nuevo = cliente.put("Digital_13","1")
+mensaje = str(cliente.get('D8'))
+print "antes: "+mensaje
+if mensaje == '1':
+    nuevo = cliente.put('D8',0)
+    print nuevo
+    print "cambio a 0"
+elif mensaje == '0':
+    nuevo = cliente.put('D8',1)
+    print nuevo
+    print "cambio a 1"
+print "ahora: "+str(cliente.get('D8'))

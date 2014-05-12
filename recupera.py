@@ -2,12 +2,16 @@
 # -*- coding: utf-8 -*-
 __author__ = 'juanfajardonavarro'
 
+#
+#  este programa solo es necesario en ARDUINO + WIFLY
+# en Arduino YUN se recupera la integridad automáticamente a través de Bridge.begin()
+#
+
+
 import MySQLdb
 import os
 import sys
 import subprocess
-import datetime
-import time
 from class_profiles import profilePython
 
 # gestión de configuración
@@ -18,6 +22,29 @@ config = profilePython('/etc/config/nooxs.config')
 ###############################################################
 # FUNCIONES ###################################################
 ###############################################################
+def ejectutaCURL(sComando):
+    # probar os.system(sWgetCommand)
+    # probar subprocess.call(sWgetCommand,shell=True)
+    # mejor: proceso = subprocess.Popen(sWgetCommand,stdout=PIPE, stderr=PIPE)
+    # error_encontado= proceso.stderr.read()
+    # proceso.stderr.close()
+    # listado = proceso.stdout.read()
+    # proceso.stdout.close()
+    # if not error_encontrado:
+    #   print listado
+    # else:
+    #   print "Se produjo error: \n%s" % error_encontrado
+
+    outfd = open('recupera_out', 'w+')
+    errfd = open('recupera_err', 'w+')
+    iError = subprocess.call(sComando, shell=True, stdout=outfd, stderr=errfd)
+    outfd.close()
+    errfd.close()
+    if not iError == 0:
+        return True
+    else:
+        return False
+
 def fIntegridad(queDB):
     bSalir = False
     while not bSalir:
@@ -31,30 +58,51 @@ def fIntegridad(queDB):
         print '|disp  | PIN |Nombre                        |Mode |         Valor Actual           |'
         print '|      |     |                              |     | fecha/Hora           | valor   |'
         print '*******+****+*******************************+*****+**********************+**********'
-        sSQL='SELECT cod_dispositivo, PIN_num, PIN_nombre, PIN_mode, fechahora_actualizacion, valor_actual FROM pin WHERE activo=1 AND PIN_tipo = "D";'
+        sSQL='SELECT cod_dispositivo, PIN_num, PIN_nombre, PIN_mode, valor_actual FROM pin WHERE activo=1 AND PIN_tipo = "D";'
         cursor.execute(sSQL)
         aFilas=cursor.fetchall()
-        iAnterior=0
         for aRegistro in aFilas:
-            if aRegistro[0] != iAnterior:
-                """
-                # recoger el nombre del dispositivo.
-                sSQL = "SELECT nom_dispositivo FROM dispositivos WHERE cod_dispositivo = "+sArgDB+";"
-                cursor.execute(sSQL,aRegistro[0])
-                aUnaFila = cursor.fetchone()
-                print
-                print aUnaFila[0]
-                print '-------+----+--------------------------------+----+---------------------+---------+'
-                """
-                iAnterior = aRegistro[0]
-            if aRegistro[5] == 1:           """está en HIGH"""
+            if aRegistro[4] == 1:
+                # ------------------------ HIGH -------------------
                 sColor = "[1;42m"
-            elif aRegistro[5] == 0:         """está en LOW"""
-                if aRegistro[3] == "I":         """INPUT"""
+                iPIN = aRegistro[1]
+                iValor = 1
+                sMode = "output"
+            elif aRegistro[4] == 0:
+                # ------------------------- LOW -------------------
+                if aRegistro[3] == "I":
+                    # --------------------- INPUT -----------------
                     sColor ="[1;41m"
-                elif aRegistro[3] == "O":       """OUTPUT"""
+                    iPIN = aRegistro[1]
+                    iValor = 0
+                    sMode = "input"
+                elif aRegistro[3] == "O":
+                    # ----------------------- OUTPUT ----------------
                     sColor = "[1;43m"
-            print chr(27)+sColor+'|{0:5d} |{1:3} | {2:30} |{3:4}| {4:19} | {5:4}    |'.format(aRegistro[0],aRegistro[1],aRegistro[2],aRegistro[3],str(aRegistro[4]),aRegistro[5])+chr(27)+"[1;m"
+                    iPIN = aRegiastro[1]
+                    iValor = 0
+                    sMode = "output"
+
+            print chr(27)+sColor+'|{0:5d} |{1:3} | {2:30} |{3:4}| {5:4}    |'.format(aRegistro[0],aRegistro[1],aRegistro[2],aRegistro[3],aRegistro[4])+chr(27)+"[1;m"
+
+            # buscar el valor de la IP
+            sSQL = "SELECT IP_dispositivo FROM dispositivos WHERE cod_dispositivo ="+sArgDB+";"
+            cursor.execute(sSQL,(aRegistro[0]))
+            aUnaFila = cursor.fetchone()
+            while aUnaFila is not None:
+                if len(aUnaFila) == 1:
+                    # CURL del modo
+                    sWgetCommand='curl http://'+aUnaFila[0]+'/arduino/mode/'+iPIN+"/"+sMode
+                    if not ejecutaCURL(sWgetCommand):
+                        print "error..."
+                        break
+                    else:
+                    # CURL del valor
+                    sWgetCommand='curl http://'+aUnaFila[0]+'/arduino/digital/'+iPIN+"/"+str(iValor)
+                    if not ejecutaCURL(sWgetCommand):
+                        print "error..."
+                        break
+                break
 
         print '-------+----+--------------------------------+----+---------------------+---------+'
         print

@@ -360,7 +360,6 @@ def fRegistro(queDB):
         print
         iOp = raw_input('Pulsa cualquier tecla para volver ')
         bSalir= True
-        db.commit()
 
 def fRegistroDiario(queDB):
     bSalir = False
@@ -397,7 +396,56 @@ def fRegistroDiario(queDB):
         print
         iOp = raw_input('Pulsa cualquier tecla para volver ')
         bSalir= True
-        db.commit()
+
+def fEstadisticaDiaria(queDB):
+    bSalir = False
+    while not bSalir:
+        os.system('clear')
+        print 'NOOXS - Mantenimiento de BD nooxsense'
+        print '*** Estadística diaria ***'
+        print
+        print
+        print 'SOLO PARA PINES DIGITALES Y EN MODO OUTPUT'
+        print
+        print '*******************************************'
+        print '|           |       |      | minutos en   |'
+        print '| Fecha     |Disp   |PIN   |  1   |  0    |'
+        print '*******************************************'
+        iOp = raw_input('Pulse (1) Ayer, (2) Esta semana, (3) Semana anterior, (4) Este mes, (5) Mes pasado, (6) Este año, (7) Todo')
+        iMinDia = 1440
+
+        sSQL='SELECT fecha, cod_dispositivo, PIN_num, min1,min0 FROM registrodiario ;'
+        cursor.execute(sSQL)
+        aFilas=cursor.fetchall()
+        x = 0
+        dFechaAnterior = aFilas[0][0]
+        for aRegistro in aFilas:
+            if dFechaAnterior != aRegistro[0]:
+                # hemos cambiado de dia
+                dFechaAnterior = aRegistro[0]
+                print
+                print
+
+
+            print '|{0:10} | {1:5d} | {2:4} | {3:5d}| {4:5d} |'.format(str(aRegistro[0]), aRegistro[1], aRegistro[2],aRegistro[3],aRegistro[4])
+            iTotMinRegistrados = aRegistro[3] + aRegistro[4]
+            iTotMinNoRegistrados = iMinDia - iTotMinRegistrados
+            iHIGH = (80 * aRegistro[3]) // 1440
+            iLOW = (80 * aRegistro[4]) // 1440
+            iNada = 80 - (iHIGH + iLOW)
+            sHIGH = "1"*iHIGH
+            sLOW = "0"*iLOW
+            sNada = "-"*iNada
+            print chr(27)+"[1;42m"+sHIGH+chr(27)+"[1;41m"+sLOW+chr(27)+"[1;m"+sNada
+
+            print '–––––––––––––––––––––––––––––––––––––––––––'
+
+
+        print
+        print
+        iOp = raw_input('Pulsa cualquier tecla para volver ')
+        bSalir= True
+
 # FIN FUNCIONES --------------------------
 
 # ------------------------------ P R I N C I P A L --------------------------------------------------
@@ -444,6 +492,7 @@ try:
         print '3 - Sensores / Actuadores'
         print '4 - Registro instantaneo'
         print '5 - Registro Diario'
+        print '6 - Estadística diaria'
         print '0 - Salir'
         print
         op = raw_input('Opcion: ')
@@ -458,6 +507,8 @@ try:
             fRegistro(queDB)
         if op == str(5):
             fRegistroDiario(queDB)
+        if op == str(6):
+            fEstadisticaDiaria(queDB)
         if op==str(0): # cambio el valor de salir a verdadero
             salir=True
     
