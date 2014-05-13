@@ -22,6 +22,10 @@ void setup() {
   Serial.print(WiFly.ip());
 
   server.begin();
+  
+  // aqui tendria que llamar a recupera.py
+  //recuperaValores(WiFly.ip());
+
 }
 
 void loop() {
@@ -199,4 +203,23 @@ void modeCommand(WiFlyClient client, String sLinea) {
   client.print(F("error: modo invalido "));
   client.print(sValor);
   Serial.println("error: modo invalido ");
+}
+
+void recuperaValores(myIP){
+  sCommand ='ssh pi@192.168.1.125 .py'
+  p.runShellCommand(sCommand);
+  // si esto no funciona (debe de tener un servidor samba en raspberry):
+  // hacer una funcion php en el servidor web de Raspberry
+  // llamar a funcion php desde aqui
+  // la funci´n php llamaria recupera.py
+  while (p.running());
+    int result = p.parseInt();
+    
+  Serial.println(result);
+  Serial.println(vuelta);
+  vuelta += 1;
+  while(p.available()>0) {
+      Serial.println(p.read());
+  }
+  Serial.flush();
 }
