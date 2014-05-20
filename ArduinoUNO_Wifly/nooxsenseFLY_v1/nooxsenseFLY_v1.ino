@@ -81,7 +81,7 @@ void digitalCommand(WiFlyClient client, String sLinea) {
      
   // leer el PIN al que se refiere el comando
   int iHasta = sLinea.indexOf("/");
-  String sPin = sLinea.substring(0,sLinea.indexOf("/"));
+  String sPin = sLinea.substring(0,iHasta);
   pin = sPin.toInt();
   Serial.println("----");
   //Serial.print("sPin : ");
@@ -93,7 +93,7 @@ void digitalCommand(WiFlyClient client, String sLinea) {
   //Serial.println(bWrite);
   
   if (bWrite) {
-    String sValor = sLinea.substring(sLinea.indexOf("/")+1,sLinea.length());
+    String sValor = sLinea.substring(iHasta+1,sLinea.length());
     value = sValor.toInt();
     Serial.print("valor a escribir: ");
     Serial.println(value);
@@ -122,7 +122,7 @@ void analogCommand(WiFlyClient client, String sLinea) {
      
   // leer el PIN al que se refiere el comando
   int iHasta = sLinea.indexOf("/");
-  String sPin = sLinea.substring(0,sLinea.indexOf("/"));
+  String sPin = sLinea.substring(0,iHasta);
   pin = sPin.toInt();
   Serial.println("----");
   Serial.println(pin);
@@ -132,7 +132,8 @@ void analogCommand(WiFlyClient client, String sLinea) {
   // Si el proximo caracter es '/' significa que tenemos una URL
   // wcon un valor parecido a: "/analog/5/120"
   if (bWrite) {
-    String sValor = sLinea.substring(sLinea.indexOf("/")+1,sLinea.length());
+    //String sValor = sLinea.substring(sLinea.indexOf("/")+1,sLinea.length());
+    String sValor = sLinea.substring(iHasta+1,sLinea.length());
     value = sValor.toInt();
     Serial.println(value);
     analogWrite(pin, value);
@@ -161,13 +162,18 @@ void modeCommand(WiFlyClient client, String sLinea) {
   int pin;
 
   // leer el numero de pin
+  Serial.println(sLinea);
   int iHasta = sLinea.indexOf("/");
-  String sPin = sLinea.substring(0,sLinea.indexOf("/"));
+  Serial.println(iHasta);
+  //String sPin = sLinea.substring(0,sLinea.indexOf("/"));
+  String sPin = sLinea.substring(0,iHasta);
+  Serial.println(sPin);
   pin = sPin.toInt();
   Serial.println("----");
   Serial.println(pin);
+  //hasta aqui OK
   
-  String sValor = sLinea.substring(sLinea.indexOf("/")+1,sLinea.length());
+  String sValor = sLinea.substring(iHasta+1,sLinea.length());
   Serial.println(sValor);
   
   // si el modo es incorrecto
