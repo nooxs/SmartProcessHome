@@ -56,14 +56,15 @@ try:
                         for aReg2 in aFilas2:
 
                                 #ejecutar curl que comprueba el estado del pin
+
                                 sWgetCommand='curl http://'+sIPDisp+'/arduino/digital/'+aReg2[0]
                                 sOutput=subprocess.check_output(sWgetCommand,shell=True)
-
+								
                                 #curl devuelve una cadena como: Pin D13 set to 1
 
                                 #selecciono lo que hay a partir de to
                                 iDonde=sOutput.find("to")+3
-
+								
                                 #el numero de PIn es el valor convertido a int desde la posicion hasta el final
                                 iVPin=int(sOutput[iDonde:])
                                 dFechayHora=datetime.datetime.now()
@@ -71,7 +72,7 @@ try:
                                 dHora = datetime.datetime.time(dFechayHora)
 
                                 #guardar registroinstantaneo
-                                cursor.execute("""INSERT INTO registroinstantaneo VALUES (%s, %s, %s, %s, %s, %s)""",(iCodDispositivo,dFechayHora,aReg2[0],iVPin, dFecha, dHora))
+                                cursor.execute("""INSERT INTO registroinstantaneo (cod_dispositivo,fechahora,PIN_num,PIN_valor,fecha,hora) VALUES (%s, %s, %s, %s, %s, %s)""",(iCodDispositivo,dFechayHora,aReg2[0],iVPin, dFecha, dHora))
 
                                 #si el valor actual es diferente al valor anterior cambio el estado
                                 if iVPin != aReg2[3]:

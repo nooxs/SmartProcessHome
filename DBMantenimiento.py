@@ -20,7 +20,7 @@ def CreaPIN(iDisp,sPIN):
     sTipo = "D"
     sMode = "I"
     dFecha = datetime.datetime.today()
-    sSQL = "INSERT INTO pin VALUES("+sArgDB+", "+sArgDB+", "+sArgDB+",0,0, "+sArgDB+",0,"+sArgDB+",0, "+sArgDB+");"
+    sSQL = "INSERT INTO pin (cod_dispositivo,PIN_num,PIN_tipo,PIN_valor_desde,PIN_valor_hasta,PIN_nombre,activo,fechahora_actualizacion,valor_actual,PIN_mode) VALUES("+sArgDB+", "+sArgDB+", "+sArgDB+",0,0, "+sArgDB+",0,"+sArgDB+",0, "+sArgDB+");"
     cursor.execute(sSQL,(iDisp, sPIN, sTipo, sNombre,dFecha,sMode))
     print 'creado PIN ',sPIN
     db.commit()
@@ -154,7 +154,7 @@ def fDispositivos(queDB):
             sIP = raw_input('IP : ')
             sClave = raw_input('Clave : ')
             iActivo = 0
-            sSQL = "INSERT INTO dispositivos VALUES("+sArgDB+", "+sArgDB+", "+sArgDB+", "+sArgDB+", "+sArgDB+", "+sArgDB+");"
+            sSQL = "INSERT INTO dispositivos (cod_dispositivo,nom_dispositivo,MAC_dispositivo,IP_dispositivo,clave_dispositivo,activo) VALUES("+sArgDB+", "+sArgDB+", "+sArgDB+", "+sArgDB+", "+sArgDB+", "+sArgDB+");"
             cursor.execute(sSQL,(iCodigo, sNombre, sMAC, sIP, sClave, iActivo))
             db.commit()
             sConfirmacion = raw_input("A continuación se creará la estructura básica. Pulse una tecla")
