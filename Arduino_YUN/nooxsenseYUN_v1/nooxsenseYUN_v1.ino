@@ -11,13 +11,20 @@
 #include <Bridge.h>
 #include <YunServer.h>
 #include <YunClient.h>
+//#include <Console.h>
 
 // por defecto se activa el servidor HTTP en el puerto 5555
 YunServer server;
 
 void setup() {
   Serial.begin(9600);
-
+  /*Console.begin();
+  while (!Console){
+    ; // wait for Console port to connect.
+  }
+  Console.println("You're connected to the Console!!!!");
+  */
+  
   // se inicia Bridge (puente entre procesador Arduino y procesador Linino
   pinMode(13,OUTPUT);
   digitalWrite(13, LOW);
@@ -87,6 +94,12 @@ void digitalCommand(YunClient client) {
   client.print(pin);
   client.print(F(" set to "));
   client.println(value);
+  /*
+  Console.print(F("Pin D"));
+  Console.print(pin);
+  Console.print(F(" set to "));
+  Console.println(value);
+  */
   
 
   // actualiza el datastore key con el actual valor del pin
