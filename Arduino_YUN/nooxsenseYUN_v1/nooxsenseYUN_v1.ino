@@ -6,31 +6,34 @@
 // "analog/2"       -> analogRead(2)
 // "mode/13/input"  -> pinMode(13, INPUT)
 // "mode/13/output" -> pinMode(13, OUTPUT)
+//
+// Recuperar estado de PIN digitales al reiniciar despues de un apagado:
+// cada vez que se cambia de valor el MODE o el Digital_valor se guarda el nuevo valor en el EEPROM:
+// en (pin*2) -> se guarda el MODE (1->Input, 2->Output)
+// en (pin*2+1) -> se guarda el valor (1->LOW, 2->HIGH)
+// al reiniciar, en el setup, se recorre la EEPROM desde 0->25 para recuperar los valores
 
 
 #include <Bridge.h>
 #include <YunServer.h>
 #include <YunClient.h>
-//#include <Console.h>
+#include <EEPROM.h>
 
 // por defecto se activa el servidor HTTP en el puerto 5555
 YunServer server;
 
 void setup() {
   Serial.begin(9600);
-  /*Console.begin();
-  while (!Console){
-    ; // wait for Console port to connect.
-  }
-  Console.println("You're connected to the Console!!!!");
-  */
   
   // se inicia Bridge (puente entre procesador Arduino y procesador Linino
-  pinMode(13,OUTPUT);
-  digitalWrite(13, LOW);
+  //pinMode(13,OUTPUT);
+  //digitalWrite(13, LOW);
   Bridge.begin();
-  digitalWrite(13, HIGH);
+  //digitalWrite(13, HIGH);
 
+  //inicializar Pines digitales (0->13) con los valores conservados en la EEPROM
+  recupera();
+  
   // Escuchar conexiones entrantes solo desde localhost
   // (Nadie desde la red externa se puede conectar)
   server.listenOnLocalhost();
@@ -84,6 +87,8 @@ void digitalCommand(YunClient client) {
   if (client.read() == '/') {
     value = client.parseInt();
     digitalWrite(pin, value);
+    // grabar en eeprom
+    EEPROM.write(pin*2,value+1);
   } 
   else {
     value = digitalRead(pin);
@@ -100,7 +105,6 @@ void digitalCommand(YunClient client) {
   Console.print(F(" set to "));
   Console.println(value);
   */
-  
 
   // actualiza el datastore key con el actual valor del pin
   String key = "D";
@@ -169,6 +173,9 @@ void modeCommand(YunClient client) {
     client.print(F("Pin D"));
     client.print(pin);
     client.print(F(" configurado como INPUT!"));
+    // grabar en eeprom
+    EEPROM.write(pin*2,1);
+    
     return;
   }
 
@@ -178,9 +185,38 @@ void modeCommand(YunClient client) {
     client.print(F("Pin D"));
     client.print(pin);
     client.print(F(" configurado como OUTPUT!"));
+    // grabar en eeprom
+    EEPROM.write(pin*2,2);
+    
     return;
   }
 
   client.print(F("error: modo invalido "));
   client.print(mode);
+}
+
+void recupera() {
+  int x = 0;
+  for (int x = 0; x < 14; x++){
+    int imode = EEPROM.read(x*2);
+    int ivalor = EEPROM.read((x*2)+1);
+    switch (imode) {
+      case 1:
+        pinMode(x,INPUT);
+        break;
+      case 2:
+        pinMode(x,OUTPUT);
+        break;
+    }
+    switch (ivalor) {
+      case 1:
+        digitalWrite(x, LOW);
+        break;
+      case 2:
+        digitalWrite(x, LOW);
+        digitalWrite(x, HIGH);
+        break;
+    }
+  }
+  
 }

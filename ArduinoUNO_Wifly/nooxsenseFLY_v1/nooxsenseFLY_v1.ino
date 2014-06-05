@@ -8,6 +8,7 @@
 // "mode/13/output" -> pinMode(13, OUTPUT)
 #include <SPI.h>
 #include <WiFly.h>
+#include <EEPROM.h>
 
 WiFlyServer server(80);
 
@@ -15,11 +16,17 @@ void setup() {
   Serial.begin(9600);
   WiFly.begin();
 
-  pinMode(13,OUTPUT);
-  digitalWrite(13, LOW);
-  digitalWrite(13, HIGH);
+  //pinMode(13,OUTPUT);
+  //digitalWrite(13, LOW);
+  //digitalWrite(13, HIGH);
   Serial.print("IP:");
   Serial.print(WiFly.ip());
+  
+  // recupera los valores que tenian los pines digitales antes del fallo de alimentacion
+  // posiciones de la EEPROM 0->27
+  // posicion (pin*2) -> mode (1:INPUT, 2:OUTPUT)
+  // posicion (pin*2+1) -> valor (1:LOW, 2:HIGH)
+  recupera();
 
   server.begin();
   
@@ -208,3 +215,28 @@ void modeCommand(WiFlyClient client, String sLinea) {
   Serial.println("error: modo invalido ");
 }
 
+void recupera() {
+  int x = 0;
+  for (int x = 0; x < 14; x++){
+    int imode = EEPROM.read(x*2);
+    int ivalor = EEPROM.read((x*2)+1);
+    switch (imode) {
+      case 1:
+        pinMode(x,INPUT);
+        break;
+      case 2:
+        pinMode(x,OUTPUT);
+        break;
+    }
+    switch (ivalor) {
+      case 1:
+        digitalWrite(x, LOW);
+        break;
+      case 2:
+        digitalWrite(x, LOW);
+        digitalWrite(x, HIGH);
+        break;
+    }
+  }
+  
+}
